@@ -29,6 +29,8 @@ import tensorflow as tf
 
 import sentencepiece as spm
 
+from nanodo.multihost_dataloading import MultiHostDataLoadIterator
+
 PAD_ID = 0
 ### pure python helpers for use with grain ###
 
@@ -69,6 +71,7 @@ def py_batched_tfds(
     worker_count: int,
     vocab_path: str,
     batch_size: int,
+    global_mesh,
     seed: int | None = 1234,
     num_epochs: int | None = None,
     num_records: int | None = None,
@@ -106,7 +109,11 @@ def py_batched_tfds(
     index_sampler = grain.IndexSampler(
         num_records=num_records if num_records is not None else len(datasource),
         num_epochs=num_epochs,
-        shard_options=grain.NoSharding(),
+        shard_options=grain.ShardOptions(
+            shard_index=jax.process_index(),
+            shard_count=jax.process_count(),
+            drop_remainder=True,
+        ),
         shuffle=shuffle,
         seed=seed,
     )
@@ -132,7 +139,9 @@ def py_batched_tfds(
         pygrain_ops.append(grain.MapOperation(map_function=np.array))
     else:
         raise ValueError(f"Unknown preprocessing: {preprocessing}")
-    pygrain_ops.append(grain.Batch(batch_size=batch_size, drop_remainder=True))
+    pygrain_ops.append(
+        grain.Batch(batch_size=batch_size // jax.process_count(), drop_remainder=True)
+    )
     batched_dataloader = grain.DataLoader(
         data_source=datasource,
         operations=pygrain_ops,
@@ -140,7 +149,7 @@ def py_batched_tfds(
         worker_count=worker_count,
         worker_buffer_size=worker_buffer_size,
     )
-    return batched_dataloader
+    return MultiHostDataLoadIterator(batched_dataloader)
 
 
 def get_py_tokenizer(path: str) -> spm.SentencePieceProcessor:

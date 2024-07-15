@@ -10,7 +10,7 @@ sudo NEEDRESTART_MODE=a apt-get update -y
 sudo NEEDRESTART_MODE=a apt-get install -y python3.10-venv gcsfuse
 
 mkdir -p ~/rosinality-tpu-bucket
-gcsfuse -o rw --implicit-dirs --http-client-timeout=5s --max-conns-per-host=2000 \
+gcsfuse -o ro --implicit-dirs --http-client-timeout=5s --max-conns-per-host=2000 \
         --debug_fuse_errors --debug_fuse --debug_gcs --debug_invariants --debug_mutex \
         --log-file=$HOME/gcsfuse.json "rosinality-tpu-bucket" "~/rosinality-tpu-bucket"
 
@@ -22,5 +22,6 @@ python3 -m pip install --upgrade pip
 
 cd ~/nanodo
 pip install -e .
+pip install tensorflow-cpu
 
 pip install -U jax[tpu] -f https://storage.googleapis.com/jax-releases/libtpu_releases.html
