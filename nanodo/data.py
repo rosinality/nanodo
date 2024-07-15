@@ -48,19 +48,23 @@ class FileInstruction:
     examples_in_shard: int
 
 
-def parse_features(features):
-    def _parse(example):
-        parsed = tf.io.parse_example(
-            example, {"text": tf.io.FixedLenFeature(shape=(), dtype=tf.string)}
-        )
+@dataclass.dataclass
+class ParseFeatures(grain.MapTransform):
+    def map(self, features):
+        def _parse(example):
+            parsed = tf.io.parse_example(
+                example, {"text": tf.io.FixedLenFeature(shape=(), dtype=tf.string)}
+            )
 
-        return parsed
+            return parsed
 
-    return _parse(features)
+        return _parse(features)
 
 
-def decode_features(features):
-    return {"text": features["text"].numpy().decode("utf-8")}
+@dataclass.dataclass
+class DecodeFeatures(grain.MapTransform):
+    def map(self, features):
+        return {"text": features["text"].numpy().decode("utf-8")}
 
 
 def py_batched_tfds(
@@ -121,17 +125,9 @@ def py_batched_tfds(
 
     pad_len = None if preprocessing == Preprocess.NOAM_PACKED else context_size
     pygrain_ops = [
-        grain.MapOperation(
-            map_function=parse_features,
-        ),
-        grain.MapOperation(map_function=decode_features),
-        grain.MapOperation(
-            map_function=functools.partial(
-                _py_tokenize,
-                spt=spt,
-                pad_len=pad_len,
-            )
-        ),
+        ParseFeatures(),
+        DecodeFeatures(),
+        Tokenize(spt, pad_len),
     ]
     if preprocessing == Preprocess.NOAM_PACKED:
         pygrain_ops.append(_NoamPack(context_size=context_size))
@@ -175,27 +171,31 @@ class _SPTokenizer:
         return self._tokenizer
 
 
-def _py_tokenize(
-    features: Mapping[str, str],
-    spt: _SPTokenizer,
-    pad_len: int | None = None,
-    pad_id: int = PAD_ID,
-) -> Sequence[int]:
-    """Tokenizes text into ids, optionally pads or truncates to pad_len."""
-    text = features["text"]
-    tokenizer = spt.get_tokenizer()
-    bos_id = tokenizer.bos_id()
-    eos_id = tokenizer.eos_id()
-    ids = tokenizer.EncodeAsIds(text)
+@dataclass
+class Tokenize(grain.MapTransform):
+    def __init__(self, tokenizer, pad_len):
+        self.tokenizer = tokenizer
+        self.pad_len = pad_len
+    
+    def map(self, 
+        features: Mapping[str, str],
+        pad_id: int = PAD_ID,
+    ) -> Sequence[int]:
+        """Tokenizes text into ids, optionally pads or truncates to pad_len."""
+        text = features["text"]
+        tokenizer = self.tokenizer.get_tokenizer()
+        bos_id = tokenizer.bos_id()
+        eos_id = tokenizer.eos_id()
+        ids = tokenizer.EncodeAsIds(text)
 
-    ids.insert(0, bos_id)
-    ids.append(eos_id)
-    if pad_len is not None:
-        if len(ids) < pad_len:
-            ids.extend([pad_id] * (pad_len - len(ids)))
-        elif len(ids) > pad_len:
-            ids = ids[:pad_len]
-    return ids
+        ids.insert(0, bos_id)
+        ids.append(eos_id)
+        if self.pad_len is not None:
+            if len(ids) < self.pad_len:
+                ids.extend([pad_id] * (self.pad_len - len(ids)))
+            elif len(ids) > self.pad_len:
+                ids = ids[:self.pad_len]
+        return ids
 
 
 @dataclasses.dataclass

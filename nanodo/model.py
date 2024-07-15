@@ -56,22 +56,17 @@ class TransformerDo(nn.Module):
         features=cfg.D,
         embedding_init=fsdp.init('embedding', cfg),
     )
-    self.pos_embed = nn.Embed(
-        num_embeddings=cfg.L,
-        features=cfg.D,
-        embedding_init=fsdp.init('embedding', cfg),
-    )
 
     block = nn.remat(TBlock) if cfg.remat else TBlock
     self.blocks = [block(cfg) for _ in range(cfg.N)]
-    self.out_ln = nn.LayerNorm(dtype=cfg.dtype, use_bias=False)
+    self.out_ln = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)
 
   def __call__(self, y_BxL: jax.Array):
     # For training on concatenated examples.
     y_BxLxD = self.embed(y_BxL)
-    y_BxLxD += self.pos_embed(jnp.arange(0, y_BxL.shape[1])[None, ...])
+    positions = jnp.arange(0, y_BxL.shape[1])[None, ...]
     for block in self.blocks:
-      y_BxLxD = block(y_BxLxD)
+      y_BxLxD = block(y_BxLxD, positions)
     y_BxLxD = self.out_ln(y_BxLxD)
     logits_BxLxV = self.embed.attend(y_BxLxD.astype(jnp.float32))
     return logits_BxLxV
@@ -88,8 +83,9 @@ class Mlp(nn.Module):
         nn.Dense, kernel_init=fsdp.init('mlp_kernel', cfg), use_bias=False,
         dtype=cfg.dtype
     )
-    x_BxLxF = linear(cfg.F)(x_BxLxD)
-    x_BxLxF = jax.nn.gelu(x_BxLxF)
+    x_BxLxF = linear(cfg.F * 2)(x_BxLxD)
+    gate, proj = x_BxLxF.split(2, axis=-1)
+    x_BxLxF = jax.nn.swish(gate) * proj
     x_BxLxD = linear(cfg.D)(x_BxLxF)
     return x_BxLxD
 
@@ -99,18 +95,42 @@ class TBlock(nn.Module):
   docfg: DoConfig
 
   @nn.compact
-  def __call__(self, in_BxLxD: jax.Array):
+  def __call__(self, in_BxLxD: jax.Array, positions: jax.Array):
     cfg = self.docfg
 
     # "pre-layernorm"
-    x_BxLxD = nn.LayerNorm(dtype=cfg.dtype, use_bias=False)(in_BxLxD)
-    x_BxLxD = CausalAttn(cfg)(x_BxLxD)
+    x_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(in_BxLxD)
+    x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
     x_BxLxD += in_BxLxD
 
-    z_BxLxD = nn.LayerNorm(dtype=cfg.dtype, use_bias=False)(x_BxLxD)
+    z_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(x_BxLxD)
     z_BxLxD = Mlp(cfg)(z_BxLxD)
 
     return x_BxLxD + z_BxLxD
+
+
+def apply_rope(
+    inputs: jax.Array,    # [B, L]
+    positions: jax.Array, # [B, L]
+    head_dim: int,
+    max_wavelength: int = 10_000,
+) -> jax.Array:
+  """Applies RoPE."""
+  fraction = 2 * jnp.arange(0, head_dim // 2) / head_dim
+  timescale = max_wavelength**fraction
+
+  sinusoid_inp = (
+      positions[..., jnp.newaxis] / timescale[jnp.newaxis, jnp.newaxis, :]
+  )
+  sinusoid_inp = sinusoid_inp[..., jnp.newaxis, :]
+  sin = jnp.sin(sinusoid_inp)
+  cos = jnp.cos(sinusoid_inp)
+
+  first_half, second_half = jnp.split(inputs, 2, axis=-1)
+  first_part = first_half * cos - second_half * sin
+  second_part = second_half * cos + first_half * sin
+  out = jnp.concatenate([first_part, second_part], axis=-1)
+  return out.astype(inputs.dtype)
 
 
 class CausalAttn(nn.Module):
@@ -118,7 +138,7 @@ class CausalAttn(nn.Module):
   cfg: DoConfig
 
   @nn.compact
-  def __call__(self, x_BxLxD: jax.Array):
+  def __call__(self, x_BxLxD: jax.Array, positions: jax.Array):
     cfg = self.cfg
 
     assert cfg.D % cfg.H == 0, f'D {cfg.D} not divisible by H {cfg.H}'
@@ -139,6 +159,8 @@ class CausalAttn(nn.Module):
         multilinear(name='key')(x_BxLxD),
         multilinear(name='value')(x_BxLxD),
     )
+    q_BxLxHxDh = apply_rope(q_BxLxHxDh, positions, Dh)
+    k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
     q_BxLxHxDh /= Dh**0.5
     att_BxHxLxL = jnp.einsum('...qhd,...khd->...hqk', q_BxLxHxDh, k_BxLxHxDh)
     # cast to fp32 for softmax
