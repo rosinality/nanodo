@@ -212,8 +212,8 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         is_final_step = step == c.opt.num_train_steps
         if step % c.eval_every_steps == 0 or is_final_step:
             _eval()
-        if step % c.checkpoint_every_steps == 0 or is_final_step:
-            _checkpoint()
+        # if step % c.checkpoint_every_steps == 0 or is_final_step:
+        #     _checkpoint()
 
         for h in hooks:
             h(step)
