@@ -31,13 +31,15 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
 
+    dim = 1280
+
     # Transformer
     cfg.model = ml_collections.config_dict.create(
-        D=512,  # model/embed dim  = qkv dim
-        H=8,  # num attention heads
+        D=dim,  # model/embed dim  = qkv dim
+        H=dim // 128,  # num attention heads
         L=512,  # max context/sequence length (move out of config?)
-        N=6,  # number of transformer block layers
-        F=2048,  # FF inner dimension
+        N=36,  # number of transformer block layers
+        F=int(dim * 3.5),  # FF inner dimension
         dtype="bfloat16",  # computation dtype.
         fsdp_enabled=True,  # True to shard the model.
         remat=False,  # Transformer block gradient checkpointing to save memory.
@@ -46,9 +48,9 @@ def get_config() -> ml_collections.ConfigDict:
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
         num_train_steps=100_000,  # Note: lm1b has 30,301,028 training examples
-        peak_learning_rate=0.0016,
-        init_learning_rate=0.00016,
-        final_learning_rate=0.00016,
+        peak_learning_rate=2e-4,
+        init_learning_rate=0,
+        final_learning_rate=1e-5,
         warmup_steps=1000,
         decay_type="cosine",
         weight_decay=0.1,
@@ -66,7 +68,7 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.max_to_keep = 100
 
     # Eval
-    cfg.eval_every_steps = 100
+    cfg.eval_every_steps = 500
     cfg.eval_split = "test"  # 306,688 examples
     cfg.eval_steps = 100  # less if this exceeds 1 epoch
     cfg.eval_max_target_length = 512
