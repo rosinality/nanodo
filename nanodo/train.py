@@ -274,7 +274,7 @@ class Trainer:
             ),
             in_shardings=(
                 shardings,
-                NamedSharding(mesh, P()),
+                NamedSharding(mesh, P("data")),
             ),
             out_shardings=(shardings, NamedSharding(mesh, P())),
             donate_argnames=("state", "in_BxL"),
