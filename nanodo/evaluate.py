@@ -80,7 +80,7 @@ class Evaluator:
         functools.partial(_eval_step, model=model, mesh=mesh),
         in_shardings=(
             shardings.params,
-            NamedSharding(mesh, P()),
+            NamedSharding(mesh, P("data")),
         ),
         out_shardings=(NamedSharding(mesh, P())),
         donate_argnames=("params", "in_BxL"),
