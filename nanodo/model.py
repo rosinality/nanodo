@@ -84,7 +84,7 @@ class Mlp(nn.Module):
         dtype=cfg.dtype
     )
     x_BxLxF = linear(cfg.F * 2)(x_BxLxD)
-    gate, proj = x_BxLxF.split(2, axis=-1)
+    gate, proj = jnp.split(x_BxLxF, 2, axis=-1)
     x_BxLxF = jax.nn.swish(gate) * proj
     x_BxLxD = linear(cfg.D)(x_BxLxF)
     return x_BxLxD
