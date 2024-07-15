@@ -59,7 +59,9 @@ def _form_global_array(path, array: np.ndarray, global_mesh: Mesh) -> jax.Array:
     ) from array_split_error
 
   local_device_buffers = jax.device_put(local_device_arrays, global_mesh.local_devices)
-  return jax.make_array_from_single_device_arrays(global_shape, sharding, local_device_buffers)
+  array = jax.make_array_from_single_device_arrays(global_shape, sharding, local_device_buffers)
+  
+  return jax.lax.with_sharding_constraint(array, NamedSharding(global_mesh, PartitionSpec()))
 
 
 def get_next_batch_sharded(local_iterator: Iterator, global_mesh: Mesh) -> jax.Array:
