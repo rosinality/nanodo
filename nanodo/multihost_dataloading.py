@@ -38,7 +38,7 @@ import grain.python as grain
 def _build_global_shape_and_sharding(
     local_shape: tuple[int, ...], global_mesh: Mesh
 ) -> tuple[tuple[int, ...], NamedSharding]:
-  sharding = NamedSharding(global_mesh, PartitionSpec())
+  sharding = NamedSharding(global_mesh, PartitionSpec(global_mesh.axis_names))
 
   global_shape = (jax.process_count() * local_shape[0],) + local_shape[1:]
 
