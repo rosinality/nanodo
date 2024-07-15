@@ -59,7 +59,7 @@ class TransformerDo(nn.Module):
 
     block = nn.remat(TBlock) if cfg.remat else TBlock
     self.blocks = [block(cfg) for _ in range(cfg.N)]
-    self.out_ln = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)
+    self.out_ln = nn.RMSNorm(dtype=cfg.dtype)
 
   def __call__(self, y_BxL: jax.Array):
     # For training on concatenated examples.
@@ -99,11 +99,11 @@ class TBlock(nn.Module):
     cfg = self.docfg
 
     # "pre-layernorm"
-    x_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(in_BxLxD)
+    x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(in_BxLxD)
     x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
     x_BxLxD += in_BxLxD
 
-    z_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(x_BxLxD)
+    z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
     z_BxLxD = Mlp(cfg)(z_BxLxD)
 
     return x_BxLxD + z_BxLxD
