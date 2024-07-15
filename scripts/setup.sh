@@ -9,9 +9,10 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share
 sudo NEEDRESTART_MODE=a apt-get update -y
 sudo NEEDRESTART_MODE=a apt-get install -y python3.10-venv gcsfuse
 
+mkdir -p ~/rosinality-tpu-bucket
 gcsfuse -o rw --implicit-dirs --http-client-timeout=5s --max-conns-per-host=2000 \
         --debug_fuse_errors --debug_fuse --debug_gcs --debug_invariants --debug_mutex \
-        --log-file=$HOME/gcsfuse.json "rosinality-tpu-bucket" "rosinality-tpu-bucket"
+        --log-file=$HOME/gcsfuse.json "rosinality-tpu-bucket" "~/rosinality-tpu-bucket"
 
 python3.10 -m venv dev
 

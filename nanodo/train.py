@@ -55,7 +55,8 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
-    wandb.init(project="nanodo", config=c)
+    if jax.process_index() == 0:
+        wandb.init(project="nanodo", config=c)
 
     mesh = Mesh(mesh_utils.create_device_mesh((jax.device_count(),)), ("data",))
     # For multistep gradient accumulator to simulate large batch sizes.
@@ -174,7 +175,8 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         with report_progress.timed("eval"):
             step = trainer.step
             eval_metrics = evaluator.eval(trainer.state.params)
-            wandb.log(eval_metrics, step=step)
+            if jax.process_index() == 0:
+                wandb.log(eval_metrics, step=step)
 
     def _checkpoint():
         if c.checkpoint:
@@ -190,7 +192,9 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
                 trainer.get_metrics(step, m) for m in microbatch_metrics
             ]
             metrics = metrics_lib.aggregate_microbatch_metrics(microbatch_metrics)
-            wandb.log(metrics, step=step)
+
+            if jax.process_index() == 0:
+                wandb.log(metrics, step=step)
             # Simple check for NaN/Inf for early termination.
             loss = metrics["train_loss"]
             if np.isnan(loss) or np.isinf(loss):
