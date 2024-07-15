@@ -59,7 +59,7 @@ class TransformerDo(nn.Module):
 
     block = nn.remat(TBlock) if cfg.remat else TBlock
     self.blocks = [block(cfg) for _ in range(cfg.N)]
-    self.out_ln = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)
+    self.out_ln = nn.RMSNorm(dtype=cfg.dtype)
 
   def __call__(self, y_BxL: jax.Array):
     # For training on concatenated examples.
@@ -84,7 +84,7 @@ class Mlp(nn.Module):
         dtype=cfg.dtype
     )
     x_BxLxF = linear(cfg.F * 2)(x_BxLxD)
-    gate, proj = x_BxLxF.split(2, axis=-1)
+    gate, proj = jnp.split(x_BxLxF, 2, axis=-1)
     x_BxLxF = jax.nn.swish(gate) * proj
     x_BxLxD = linear(cfg.D)(x_BxLxF)
     return x_BxLxD
@@ -99,11 +99,11 @@ class TBlock(nn.Module):
     cfg = self.docfg
 
     # "pre-layernorm"
-    x_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(in_BxLxD)
+    x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(in_BxLxD)
     x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
     x_BxLxD += in_BxLxD
 
-    z_BxLxD = nn.RMSNorm(dtype=cfg.dtype, use_bias=False)(x_BxLxD)
+    z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
     z_BxLxD = Mlp(cfg)(z_BxLxD)
 
     return x_BxLxD + z_BxLxD

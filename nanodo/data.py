@@ -48,7 +48,7 @@ class FileInstruction:
     examples_in_shard: int
 
 
-@dataclass.dataclass
+@dataclasses.dataclass
 class ParseFeatures(grain.MapTransform):
     def map(self, features):
         def _parse(example):
@@ -61,7 +61,7 @@ class ParseFeatures(grain.MapTransform):
         return _parse(features)
 
 
-@dataclass.dataclass
+@dataclasses.dataclass
 class DecodeFeatures(grain.MapTransform):
     def map(self, features):
         return {"text": features["text"].numpy().decode("utf-8")}
@@ -171,13 +171,14 @@ class _SPTokenizer:
         return self._tokenizer
 
 
-@dataclass
+@dataclasses.dataclass
 class Tokenize(grain.MapTransform):
     def __init__(self, tokenizer, pad_len):
         self.tokenizer = tokenizer
         self.pad_len = pad_len
-    
-    def map(self, 
+
+    def map(
+        self,
         features: Mapping[str, str],
         pad_id: int = PAD_ID,
     ) -> Sequence[int]:
@@ -194,7 +195,7 @@ class Tokenize(grain.MapTransform):
             if len(ids) < self.pad_len:
                 ids.extend([pad_id] * (self.pad_len - len(ids)))
             elif len(ids) > self.pad_len:
-                ids = ids[:self.pad_len]
+                ids = ids[: self.pad_len]
         return ids
 
 
