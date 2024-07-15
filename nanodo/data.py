@@ -18,12 +18,14 @@ import dataclasses
 import enum
 import functools
 from typing import Iterator
+import math
+import json
 
 import grain.python as grain
 import jax
 import jax.numpy as jnp
 import numpy as np
-import tensorflow_datasets as tfds
+import tensorflow as tf
 
 import sentencepiece as spm
 
@@ -32,13 +34,36 @@ PAD_ID = 0
 
 
 class Preprocess(enum.Enum):
-  NOAM_PACKED = 1
-  PADDED = 2
+    NOAM_PACKED = 1
+    PADDED = 2
+
+
+@dataclasses.dataclass
+class FileInstruction:
+    filename: str
+    skip: int
+    take: int
+    examples_in_shard: int
+
+
+def parse_features(features):
+    def _parse(example):
+        parsed = tf.io.parse_example(
+            example, {"text": tf.io.FixedLenFeature(shape=(), dtype=tf.string)}
+        )
+
+        return parsed
+
+    return _parse(features)
+
+
+def decode_features(features):
+    return {"text": features["text"].numpy().decode("utf-8")}
 
 
 def py_batched_tfds(
     *,
-    tfds_name: str,
+    fileinstructions: str,
     split: str,
     context_size: int,
     worker_count: int,
@@ -51,65 +76,94 @@ def py_batched_tfds(
     worker_buffer_size: int = 2,
     shuffle: bool = True,
 ) -> grain.DataLoader:
-  """Returns iterator for regularly batched text examples."""
-  datasource = tfds.data_source(tfds_name, split=split)
-  index_sampler = grain.IndexSampler(
-      num_records=num_records if num_records is not None else len(datasource),
-      num_epochs=num_epochs,
-      shard_options=grain.NoSharding(),
-      shuffle=shuffle,
-      seed=seed,
-  )
-  spt = _SPTokenizer(vocab_path)
+    """Returns iterator for regularly batched text examples."""
+    # datasource = tfds.data_source(tfds_name, split=split)
 
-  pad_len = None if preprocessing == Preprocess.NOAM_PACKED else context_size
-  pygrain_ops = [
-      grain.MapOperation(
-          map_function=functools.partial(
-              _py_tokenize,
-              spt=spt,
-              pad_len=pad_len,
-          )
-      )
-  ]
-  if preprocessing == Preprocess.NOAM_PACKED:
-    pygrain_ops.append(_NoamPack(context_size=context_size))
-  elif preprocessing == Preprocess.PADDED:
-    pygrain_ops.append(grain.MapOperation(map_function=np.array))
-  else:
-    raise ValueError(f'Unknown preprocessing: {preprocessing}')
-  pygrain_ops.append(grain.Batch(batch_size=batch_size, drop_remainder=True))
-  batched_dataloader = grain.DataLoader(
-      data_source=datasource,
-      operations=pygrain_ops,
-      sampler=index_sampler,
-      worker_count=worker_count,
-      worker_buffer_size=worker_buffer_size,
-  )
-  return batched_dataloader
+    with open(fileinstructions, "r") as f:
+        fileinstructions = json.load(f)
+
+    instructions = []
+    for instruction in fileinstructions:
+        shard_size = instruction["examples_in_shard"]
+        eval_size = math.ceil(shard_size * 0.0001)
+        if split == "train":
+            instructions.append(
+                FileInstruction(
+                    instruction["filename"],
+                    eval_size,
+                    shard_size - eval_size,
+                    shard_size,
+                )
+            )
+
+        else:
+            instructions.append(
+                FileInstruction(instruction["filename"], 0, eval_size, shard_size)
+            )
+
+    datasource = grain.ArrayRecordDataSource(instructions)
+
+    index_sampler = grain.IndexSampler(
+        num_records=num_records if num_records is not None else len(datasource),
+        num_epochs=num_epochs,
+        shard_options=grain.NoSharding(),
+        shuffle=shuffle,
+        seed=seed,
+    )
+    spt = _SPTokenizer(vocab_path)
+
+    pad_len = None if preprocessing == Preprocess.NOAM_PACKED else context_size
+    pygrain_ops = [
+        grain.MapOperation(
+            map_function=parse_features,
+        ),
+        grain.MapOperation(map_function=decode_features),
+        grain.MapOperation(
+            map_function=functools.partial(
+                _py_tokenize,
+                spt=spt,
+                pad_len=pad_len,
+            )
+        ),
+    ]
+    if preprocessing == Preprocess.NOAM_PACKED:
+        pygrain_ops.append(_NoamPack(context_size=context_size))
+    elif preprocessing == Preprocess.PADDED:
+        pygrain_ops.append(grain.MapOperation(map_function=np.array))
+    else:
+        raise ValueError(f"Unknown preprocessing: {preprocessing}")
+    pygrain_ops.append(grain.Batch(batch_size=batch_size, drop_remainder=True))
+    batched_dataloader = grain.DataLoader(
+        data_source=datasource,
+        operations=pygrain_ops,
+        sampler=index_sampler,
+        worker_count=worker_count,
+        worker_buffer_size=worker_buffer_size,
+    )
+    return batched_dataloader
 
 
 def get_py_tokenizer(path: str) -> spm.SentencePieceProcessor:
-  sp = spm.SentencePieceProcessor()
-  sp.Load(path)
-  assert sp.pad_id() == PAD_ID
-  assert sp.eos_id() != -1
-  assert sp.bos_id() != -1
-  return sp
+    sp = spm.SentencePieceProcessor()
+    sp.Load(path)
+    assert sp.pad_id() == PAD_ID
+    assert sp.eos_id() != -1
+    assert sp.bos_id() != -1
+    return sp
 
 
 # Need this because we can't pickle SentencePieceProcessor object
 class _SPTokenizer:
-  """Wrapper class for SentencePiece tokenizer."""
+    """Wrapper class for SentencePiece tokenizer."""
 
-  def __init__(self, vocab_path):
-    self._tokenizer = None
-    self._vocab_path = vocab_path
+    def __init__(self, vocab_path):
+        self._tokenizer = None
+        self._vocab_path = vocab_path
 
-  def get_tokenizer(self) -> spm.SentencePieceProcessor:
-    if not self._tokenizer:
-      self._tokenizer = get_py_tokenizer(self._vocab_path)
-    return self._tokenizer
+    def get_tokenizer(self) -> spm.SentencePieceProcessor:
+        if not self._tokenizer:
+            self._tokenizer = get_py_tokenizer(self._vocab_path)
+        return self._tokenizer
 
 
 def _py_tokenize(
@@ -118,51 +172,51 @@ def _py_tokenize(
     pad_len: int | None = None,
     pad_id: int = PAD_ID,
 ) -> Sequence[int]:
-  """Tokenizes text into ids, optionally pads or truncates to pad_len."""
-  text = features['text']
-  tokenizer = spt.get_tokenizer()
-  bos_id = tokenizer.bos_id()
-  eos_id = tokenizer.eos_id()
-  ids = tokenizer.EncodeAsIds(text)
+    """Tokenizes text into ids, optionally pads or truncates to pad_len."""
+    text = features["text"]
+    tokenizer = spt.get_tokenizer()
+    bos_id = tokenizer.bos_id()
+    eos_id = tokenizer.eos_id()
+    ids = tokenizer.EncodeAsIds(text)
 
-  ids.insert(0, bos_id)
-  ids.append(eos_id)
-  if pad_len is not None:
-    if len(ids) < pad_len:
-      ids.extend([pad_id] * (pad_len - len(ids)))
-    elif len(ids) > pad_len:
-      ids = ids[:pad_len]
-  return ids
+    ids.insert(0, bos_id)
+    ids.append(eos_id)
+    if pad_len is not None:
+        if len(ids) < pad_len:
+            ids.extend([pad_id] * (pad_len - len(ids)))
+        elif len(ids) > pad_len:
+            ids = ids[:pad_len]
+    return ids
 
 
 @dataclasses.dataclass
 class _NoamPack:
-  """Pygrain operation for tokenizing and Noam packing text."""
+    """Pygrain operation for tokenizing and Noam packing text."""
 
-  context_size: int
+    context_size: int
 
-  def __call__(
-      self, idseq_iterator: Iterator[grain.Record]
-  ) -> Iterator[grain.Record]:
-    packed_ids = []
-    for input_record in idseq_iterator:
-      start = 0
-      while start < len(input_record.data):
-        rem_data = input_record.data[start:]
-        if len(packed_ids) + len(rem_data) < self.context_size:
-          packed_ids.extend(rem_data)  # use rest of example, move-on
-          break
-        else:
-          take = self.context_size - len(packed_ids)
-          packed_ids.extend(rem_data[:take])
-          last_record_key = input_record.metadata.remove_record_key()
-          yield grain.Record(
-              last_record_key, np.array(packed_ids, dtype=np.int32)
-          )
-          start += take
-          packed_ids = []
-          # Drop remainder for simplicity.
-          # We lose the rest of the example on restore.
+    def __call__(
+        self, idseq_iterator: Iterator[grain.Record]
+    ) -> Iterator[grain.Record]:
+        packed_ids = []
+        for input_record in idseq_iterator:
+            start = 0
+            while start < len(input_record.data):
+                rem_data = input_record.data[start:]
+                if len(packed_ids) + len(rem_data) < self.context_size:
+                    packed_ids.extend(rem_data)  # use rest of example, move-on
+                    break
+                else:
+                    take = self.context_size - len(packed_ids)
+                    packed_ids.extend(rem_data[:take])
+                    last_record_key = input_record.metadata.remove_record_key()
+                    yield grain.Record(
+                        last_record_key, np.array(packed_ids, dtype=np.int32)
+                    )
+                    start += take
+                    packed_ids = []
+                    # Drop remainder for simplicity.
+                    # We lose the rest of the example on restore.
 
 
 # pylint: disable=invalid-name
@@ -172,15 +226,15 @@ def get_in_out(
     in_BxL: jax.Array,
     pad_id: int = PAD_ID,
 ) -> tuple[jax.Array, jax.Array, jax.Array]:
-  """Returns input, output, and weights for a batch of examples."""
-  # Assumes input of the form <BOS> <IDs> <EOS> for eval.
-  x_BxL = in_BxL
-  y_BxL = jnp.pad(
-      in_BxL[:, 1:],
-      ((0, 0), (0, 1)),
-      mode='constant',
-      constant_values=pad_id,
-  )
-  weights_BxL = jnp.where(y_BxL != pad_id, 1, 0).astype(jnp.float32)
+    """Returns input, output, and weights for a batch of examples."""
+    # Assumes input of the form <BOS> <IDs> <EOS> for eval.
+    x_BxL = in_BxL
+    y_BxL = jnp.pad(
+        in_BxL[:, 1:],
+        ((0, 0), (0, 1)),
+        mode="constant",
+        constant_values=pad_id,
+    )
+    weights_BxL = jnp.where(y_BxL != pad_id, 1, 0).astype(jnp.float32)
 
-  return x_BxL, y_BxL, weights_BxL
+    return x_BxL, y_BxL, weights_BxL
