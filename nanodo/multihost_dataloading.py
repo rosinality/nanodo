@@ -34,8 +34,6 @@ from jax.sharding import NamedSharding
 from jax.sharding import Mesh
 import grain.python as grain
 
-import max_logging
-
 
 def _build_global_shape_and_sharding(
     local_shape: tuple[int, ...], global_mesh: Mesh
@@ -78,7 +76,6 @@ def get_next_batch_sharded(local_iterator: Iterator, global_mesh: Mesh) -> jax.A
       local_data = next(local_iterator)
       loaded_data_success = True
     except tf.errors.FailedPreconditionError:
-      max_logging.log("Failed to get next data batch, retrying")
       time.sleep(SLEEP_TIME)
 
   # Try one last time, if this fails we will see the full stack trace.
