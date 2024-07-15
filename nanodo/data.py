@@ -149,7 +149,7 @@ def py_batched_tfds(
         worker_count=worker_count,
         worker_buffer_size=worker_buffer_size,
     )
-    return MultiHostDataLoadIterator(batched_dataloader)
+    return MultiHostDataLoadIterator(batched_dataloader, global_mesh)
 
 
 def get_py_tokenizer(path: str) -> spm.SentencePieceProcessor:
