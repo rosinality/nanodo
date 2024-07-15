@@ -1,0 +1,1886 @@
+[
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-001-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-002-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-003-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-004-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-005-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-006-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-007-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-008-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-009-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-010-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-011-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-012-of-472.arrayrecord",
+    "examples_in_shard": 744000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-013-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-014-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-015-of-472.arrayrecord",
+    "examples_in_shard": 718000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-016-of-472.arrayrecord",
+    "examples_in_shard": 718000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-017-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-018-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-019-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-020-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-021-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-022-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-023-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-024-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-025-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-026-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-027-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-028-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-029-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-030-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-031-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-032-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-033-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-034-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-035-of-472.arrayrecord",
+    "examples_in_shard": 742000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-036-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-037-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-038-of-472.arrayrecord",
+    "examples_in_shard": 746000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-039-of-472.arrayrecord",
+    "examples_in_shard": 749000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-040-of-472.arrayrecord",
+    "examples_in_shard": 748000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-041-of-472.arrayrecord",
+    "examples_in_shard": 748000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-042-of-472.arrayrecord",
+    "examples_in_shard": 751000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-043-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-044-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-045-of-472.arrayrecord",
+    "examples_in_shard": 742000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-046-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-047-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-048-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-049-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-050-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-051-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-052-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-053-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-054-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-055-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-056-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-057-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-058-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-059-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-060-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-061-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-062-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-063-of-472.arrayrecord",
+    "examples_in_shard": 718000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-064-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-065-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-066-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-067-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-068-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-069-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-070-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-071-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-072-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-073-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-074-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-075-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-076-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-077-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-078-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-079-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-080-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-081-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-082-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-083-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-084-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-085-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-086-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-087-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-088-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-089-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-090-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-091-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-092-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-093-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-094-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-095-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-096-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-097-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-098-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-099-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-100-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-101-of-472.arrayrecord",
+    "examples_in_shard": 742000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-102-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-103-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-104-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-105-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-106-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-107-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-108-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-109-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-110-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-111-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-112-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-113-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-114-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-115-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-116-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-117-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-118-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-119-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-120-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-121-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-122-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-123-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-124-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-125-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-126-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-127-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-128-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-129-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-130-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-131-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-132-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-133-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-134-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-135-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-136-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-137-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-138-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-139-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-140-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-141-of-472.arrayrecord",
+    "examples_in_shard": 748000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-142-of-472.arrayrecord",
+    "examples_in_shard": 750000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-143-of-472.arrayrecord",
+    "examples_in_shard": 752000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-144-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-145-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-146-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-147-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-148-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-149-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-150-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-151-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-152-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-153-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-154-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-155-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-156-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-157-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-158-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-159-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-160-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-161-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-162-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-163-of-472.arrayrecord",
+    "examples_in_shard": 748000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-164-of-472.arrayrecord",
+    "examples_in_shard": 750000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-165-of-472.arrayrecord",
+    "examples_in_shard": 751000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-166-of-472.arrayrecord",
+    "examples_in_shard": 748000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-167-of-472.arrayrecord",
+    "examples_in_shard": 752000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-168-of-472.arrayrecord",
+    "examples_in_shard": 753000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-169-of-472.arrayrecord",
+    "examples_in_shard": 751000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-170-of-472.arrayrecord",
+    "examples_in_shard": 757000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-171-of-472.arrayrecord",
+    "examples_in_shard": 758000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-172-of-472.arrayrecord",
+    "examples_in_shard": 750000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-173-of-472.arrayrecord",
+    "examples_in_shard": 749000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-174-of-472.arrayrecord",
+    "examples_in_shard": 749000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-175-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-176-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-177-of-472.arrayrecord",
+    "examples_in_shard": 744000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-178-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-179-of-472.arrayrecord",
+    "examples_in_shard": 746000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-180-of-472.arrayrecord",
+    "examples_in_shard": 750000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-181-of-472.arrayrecord",
+    "examples_in_shard": 745000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-182-of-472.arrayrecord",
+    "examples_in_shard": 749000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-183-of-472.arrayrecord",
+    "examples_in_shard": 752000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-184-of-472.arrayrecord",
+    "examples_in_shard": 753000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-185-of-472.arrayrecord",
+    "examples_in_shard": 752000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-186-of-472.arrayrecord",
+    "examples_in_shard": 754000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-187-of-472.arrayrecord",
+    "examples_in_shard": 756000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-188-of-472.arrayrecord",
+    "examples_in_shard": 760000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-189-of-472.arrayrecord",
+    "examples_in_shard": 750000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-190-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-191-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-192-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-193-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-194-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-195-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-196-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-197-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-198-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-199-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-200-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-201-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-202-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-203-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-204-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-205-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-206-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-207-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-208-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-209-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-210-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-211-of-472.arrayrecord",
+    "examples_in_shard": 747000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-212-of-472.arrayrecord",
+    "examples_in_shard": 746000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-213-of-472.arrayrecord",
+    "examples_in_shard": 749000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-214-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-215-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-216-of-472.arrayrecord",
+    "examples_in_shard": 742000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-217-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-218-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-219-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-220-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-221-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-222-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-223-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-224-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-225-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-226-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-227-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-228-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-229-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-230-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-231-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-232-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-233-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-234-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-235-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-236-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-237-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-238-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-239-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-240-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-241-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-242-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-243-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-244-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-245-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-246-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-247-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-248-of-472.arrayrecord",
+    "examples_in_shard": 713000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-249-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-250-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-251-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-252-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-253-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-254-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-255-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-256-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-257-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-258-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-259-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-260-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-261-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-262-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-263-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-264-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-265-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-266-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-267-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-268-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-269-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-270-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-271-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-272-of-472.arrayrecord",
+    "examples_in_shard": 704000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-273-of-472.arrayrecord",
+    "examples_in_shard": 707000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-274-of-472.arrayrecord",
+    "examples_in_shard": 709000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-275-of-472.arrayrecord",
+    "examples_in_shard": 710000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-276-of-472.arrayrecord",
+    "examples_in_shard": 714000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-277-of-472.arrayrecord",
+    "examples_in_shard": 713000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-278-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-279-of-472.arrayrecord",
+    "examples_in_shard": 709000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-280-of-472.arrayrecord",
+    "examples_in_shard": 709000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-281-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-282-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-283-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-284-of-472.arrayrecord",
+    "examples_in_shard": 715000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-285-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-286-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-287-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-288-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-289-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-290-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-291-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-292-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-293-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-294-of-472.arrayrecord",
+    "examples_in_shard": 718000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-295-of-472.arrayrecord",
+    "examples_in_shard": 718000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-296-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-297-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-298-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-299-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-300-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-301-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-302-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-303-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-304-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-305-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-306-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-307-of-472.arrayrecord",
+    "examples_in_shard": 710000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-308-of-472.arrayrecord",
+    "examples_in_shard": 713000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-309-of-472.arrayrecord",
+    "examples_in_shard": 715000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-310-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-311-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-312-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-313-of-472.arrayrecord",
+    "examples_in_shard": 720000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-314-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-315-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-316-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-317-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-318-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-319-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-320-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-321-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-322-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-323-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-324-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-325-of-472.arrayrecord",
+    "examples_in_shard": 716000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-326-of-472.arrayrecord",
+    "examples_in_shard": 717000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-327-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-328-of-472.arrayrecord",
+    "examples_in_shard": 721000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-329-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-330-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-331-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-332-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-333-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-334-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-335-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-336-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-337-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-338-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-339-of-472.arrayrecord",
+    "examples_in_shard": 719000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-340-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-341-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-342-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-343-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-344-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-345-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-346-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-347-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-348-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-349-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-350-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-351-of-472.arrayrecord",
+    "examples_in_shard": 742000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-352-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-353-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-354-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-355-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-356-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-357-of-472.arrayrecord",
+    "examples_in_shard": 724000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-358-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-359-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-360-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-361-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-362-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-363-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-364-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-365-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-366-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-367-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-368-of-472.arrayrecord",
+    "examples_in_shard": 744000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-369-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-370-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-371-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-372-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-373-of-472.arrayrecord",
+    "examples_in_shard": 727000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-374-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-375-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-376-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-378-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-379-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-380-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-381-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-382-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-383-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-384-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-385-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-386-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-387-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-388-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-389-of-472.arrayrecord",
+    "examples_in_shard": 723000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-390-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-391-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-392-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-393-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-394-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-395-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-396-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-397-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-398-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-399-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-400-of-472.arrayrecord",
+    "examples_in_shard": 743000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-401-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-402-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-403-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-404-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-405-of-472.arrayrecord",
+    "examples_in_shard": 741000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-406-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-407-of-472.arrayrecord",
+    "examples_in_shard": 725000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-408-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-409-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-410-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-411-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-412-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-413-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-414-of-472.arrayrecord",
+    "examples_in_shard": 730000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-415-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-416-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-417-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-418-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-419-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-420-of-472.arrayrecord",
+    "examples_in_shard": 738000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-421-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-422-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-423-of-472.arrayrecord",
+    "examples_in_shard": 735000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-424-of-472.arrayrecord",
+    "examples_in_shard": 734000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-425-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-426-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-427-of-472.arrayrecord",
+    "examples_in_shard": 737000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-428-of-472.arrayrecord",
+    "examples_in_shard": 732000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-429-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-430-of-472.arrayrecord",
+    "examples_in_shard": 726000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-431-of-472.arrayrecord",
+    "examples_in_shard": 739000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-432-of-472.arrayrecord",
+    "examples_in_shard": 736000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-433-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-434-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-435-of-472.arrayrecord",
+    "examples_in_shard": 740000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-436-of-472.arrayrecord",
+    "examples_in_shard": 744000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-437-of-472.arrayrecord",
+    "examples_in_shard": 729000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-438-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-439-of-472.arrayrecord",
+    "examples_in_shard": 733000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-440-of-472.arrayrecord",
+    "examples_in_shard": 731000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-441-of-472.arrayrecord",
+    "examples_in_shard": 579206
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-442-of-472.arrayrecord",
+    "examples_in_shard": 605074
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-443-of-472.arrayrecord",
+    "examples_in_shard": 620541
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-444-of-472.arrayrecord",
+    "examples_in_shard": 624440
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-445-of-472.arrayrecord",
+    "examples_in_shard": 617856
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-446-of-472.arrayrecord",
+    "examples_in_shard": 619001
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-447-of-472.arrayrecord",
+    "examples_in_shard": 635087
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-448-of-472.arrayrecord",
+    "examples_in_shard": 622405
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-449-of-472.arrayrecord",
+    "examples_in_shard": 633102
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-450-of-472.arrayrecord",
+    "examples_in_shard": 622984
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-451-of-472.arrayrecord",
+    "examples_in_shard": 728000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-452-of-472.arrayrecord",
+    "examples_in_shard": 722000
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-453-of-472.arrayrecord",
+    "examples_in_shard": 720678
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-454-of-472.arrayrecord",
+    "examples_in_shard": 705478
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-455-of-472.arrayrecord",
+    "examples_in_shard": 694222
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-456-of-472.arrayrecord",
+    "examples_in_shard": 691760
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-457-of-472.arrayrecord",
+    "examples_in_shard": 697656
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-458-of-472.arrayrecord",
+    "examples_in_shard": 99482
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-459-of-472.arrayrecord",
+    "examples_in_shard": 687935
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-460-of-472.arrayrecord",
+    "examples_in_shard": 691171
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-461-of-472.arrayrecord",
+    "examples_in_shard": 471555
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-462-of-472.arrayrecord",
+    "examples_in_shard": 473385
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-463-of-472.arrayrecord",
+    "examples_in_shard": 456081
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-464-of-472.arrayrecord",
+    "examples_in_shard": 488899
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-465-of-472.arrayrecord",
+    "examples_in_shard": 473991
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-466-of-472.arrayrecord",
+    "examples_in_shard": 466153
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-467-of-472.arrayrecord",
+    "examples_in_shard": 488220
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-468-of-472.arrayrecord",
+    "examples_in_shard": 475987
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-469-of-472.arrayrecord",
+    "examples_in_shard": 450986
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-470-of-472.arrayrecord",
+    "examples_in_shard": 484914
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-471-of-472.arrayrecord",
+    "examples_in_shard": 19156
+  },
+  {
+    "filename": "/home/rosinality/rosinality-tpu-bucket/fineweb-edu-sample-350BT/data-472-of-472.arrayrecord",
+    "examples_in_shard": 23437
+  }
+]
