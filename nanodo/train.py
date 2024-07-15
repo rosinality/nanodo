@@ -56,7 +56,24 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
     if jax.process_index() == 0:
-        wandb.init(project="nanodo", config=c)
+        config = dict(
+            dim=c.model.D,
+            n_layers=c.model.N,
+            length=c.model.L,
+            batch_size=c.batch_size,
+            num_train_steps=c.opt.num_train_steps,
+            learning_rate=c.opt.peak_learning_rate,
+            warmup_steps=c.opt.warmup_steps,
+            weight_decay=c.opt.weight_decay,
+            eps=1e-9,
+            beta1=0.9,
+            beta2=0.98,
+            embed_init="fan_in",
+            kernel_init="xavier_uniform",
+            embed_multiplier=1,
+            lr_multiplier=1,
+        )
+        wandb.init(project="nanodo", config=config)
 
     mesh = Mesh(mesh_utils.create_device_mesh((jax.device_count(),)), ("data",))
     # For multistep gradient accumulator to simulate large batch sizes.
@@ -196,7 +213,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             metrics = metrics_lib.aggregate_microbatch_metrics(microbatch_metrics)
 
             if jax.process_index() == 0:
-                wandb.log(metrics, step=step)
+                wandb.log(metrics, step=step + 1)
             # Simple check for NaN/Inf for early termination.
             loss = metrics["train_loss"]
             if np.isnan(loss) or np.isinf(loss):
