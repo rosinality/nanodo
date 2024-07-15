@@ -90,7 +90,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     logging.info("[TIMING]: get_new_state (jit init) time: %.2fs", init_time)
 
     train_ds = data.py_batched_tfds(
-        tfds_name=c.ds_name,
+        fileinstructions=c.ds_name,
         split="train",
         context_size=c.model.L,
         worker_count=c.pygrain_worker_count,
@@ -135,7 +135,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         raise ValueError("Eval Batch size must be divisible by the number of devices.")
 
     eval_ds = data.py_batched_tfds(
-        tfds_name=c.ds_name,
+        fileinstructions=c.ds_name,
         split=c.eval_split,
         context_size=c.model.L,
         worker_count=c.pygrain_worker_count,
