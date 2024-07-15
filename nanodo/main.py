@@ -51,5 +51,6 @@ def main(argv):
 
 
 if __name__ == '__main__':
+  jax.distributed.initialize()
   jax.config.config_with_absl()
   app.run(main)
