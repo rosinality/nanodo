@@ -55,8 +55,7 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
-    wandb.init(project="nanodo")
-    wandb.config = c
+    wandb.init(project="nanodo", config=c)
 
     mesh = Mesh(mesh_utils.create_device_mesh((jax.device_count(),)), ("data",))
     # For multistep gradient accumulator to simulate large batch sizes.
