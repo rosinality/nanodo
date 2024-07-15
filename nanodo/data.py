@@ -67,6 +67,12 @@ class DecodeFeatures(grain.MapTransform):
         return {"text": features["text"].numpy().decode("utf-8")}
 
 
+@dataclasses.dataclass
+class PaddedArray(grain.MapTransform):
+    def map(self, features):
+        return np.array(features)
+
+
 def py_batched_tfds(
     *,
     fileinstructions: str,
@@ -132,7 +138,7 @@ def py_batched_tfds(
     if preprocessing == Preprocess.NOAM_PACKED:
         pygrain_ops.append(_NoamPack(context_size=context_size))
     elif preprocessing == Preprocess.PADDED:
-        pygrain_ops.append(grain.MapOperation(map_function=np.array))
+        pygrain_ops.append(PaddedArray())
     else:
         raise ValueError(f"Unknown preprocessing: {preprocessing}")
     pygrain_ops.append(
