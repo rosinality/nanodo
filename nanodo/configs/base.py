@@ -28,7 +28,7 @@ def get_config() -> ml_collections.ConfigDict:
     # Data
     cfg.batch_size = 256  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
-    cfg.ds_name = "/home/rosinality/fileinstructions.json"
+    cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
 
     # Transformer
