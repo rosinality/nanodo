@@ -81,7 +81,7 @@ class TransformerDo(nn.Module):
         block = nn.remat(TBlock) if cfg.remat else TBlock
         self.blocks = [block(cfg) for _ in range(cfg.N)]
         self.out_ln = nn.RMSNorm(dtype=cfg.dtype)
-        self.head = nn.Dense(cfg.D, use_bias=False, dtype=cfg.dtype)
+        self.head = nn.Dense(cfg.D, use_bias=False)
 
     def __call__(self, y_BxL: jax.Array):
         # For training on concatenated examples.
@@ -91,7 +91,7 @@ class TransformerDo(nn.Module):
             y_BxLxD = block(y_BxLxD, positions)
         y_BxLxD = self.out_ln(y_BxLxD)
         # logits_BxLxV = self.embed.attend(y_BxLxD.astype(jnp.float32))
-        logits_BxLxV = self.head(y_BxLxD).astype(jnp.float32)
+        logits_BxLxV = self.head(y_BxLxD.astype(jnp.float32))
         return logits_BxLxV
 
 
