@@ -54,7 +54,7 @@ def get_config() -> ml_collections.ConfigDict:
         ),
         # output_kernel_init=nn.initializers.xavier_uniform(),
         head_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
-        embed_init=nn.initializers.normal(0.02),
+        embed_init=nn.initializers.normal(0.1),
         # embed_init=nn.initializers.variance_scaling(
         #     1.0, "fan_in", "normal", out_axis=0
         # ),
@@ -63,15 +63,15 @@ def get_config() -> ml_collections.ConfigDict:
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
         num_train_steps=45501,  # Note: lm1b has 30,301,028 training examples
-        peak_learning_rate=3e-4,
+        peak_learning_rate=5e-4,
         init_learning_rate=0,
         final_learning_rate=3e-5,
         warmup_steps=1000,
         decay_type="cosine",
-        weight_decay=0.1,
+        weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
-        independent_weight_decay=False,
+        independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
     )
 
