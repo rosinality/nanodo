@@ -54,7 +54,7 @@ def get_init_metrics(
       "n_params/embedding": n_params_embedding,
       "n_params/non_embedding": n_params_non_embedding,
   }
-  metrics |= _counts_from_tree(state.params)
+  # metrics |= _counts_from_tree(state.params)
 
   if "head" in state.params:
     n_params_head = _size(state.params["head"])
@@ -108,9 +108,9 @@ def get_metrics(
   if c.get("log_internal_metrics", False):
     metrics |= {
         **_stats_from_state(aux_data.state),
-        **_stats_from_tree("grads/", acc_grads),
-        **_stats_from_tree("params/", state.params),
-        **_stats_from_tree("updates/", updates),
+        # **_stats_from_tree("grads/", acc_grads),
+        # **_stats_from_tree("params/", state.params),
+        # **_stats_from_tree("updates/", updates),
     }
   return metrics
 
