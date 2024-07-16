@@ -59,6 +59,11 @@ class DoConfig:
         1.0, "fan_in", "normal"
     )
     dtype: jnp.dtype = jnp.float32
+    embed_init_str: str = "fan_in-1.0"
+    kernel_init_str: str = "xavier_uniform"
+    output_kernel_init_str: str = "fan_in-1"
+    head_init_str: str = "fan_in-1.0"
+    z_loss: float = 0
     fsdp_enabled: bool = True
 
     # Transformer block rematerialization / gradient checkpointing to save memory.
