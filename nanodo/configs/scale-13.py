@@ -54,7 +54,7 @@ def get_config() -> ml_collections.ConfigDict:
         ),
         # output_kernel_init=nn.initializers.xavier_uniform(),
         head_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
-        embed_init=nn.initializers.normal(0.1),
+        embed_init=nn.initializers.normal(1.0),
         # embed_init=nn.initializers.variance_scaling(
         #     1.0, "fan_in", "normal", out_axis=0
         # ),
