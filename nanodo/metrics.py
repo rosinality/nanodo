@@ -97,6 +97,7 @@ def get_metrics(
       "train_loss": loss,
       "log_perplexity": aux_data.log_perplexity,
       "train_ntokens": aux_data.ntokens,
+      "z_loss": aux_data.z_loss,
       "learning_rate": jnp.array(lr),
       "train_fraction": step / c.opt.num_train_steps,
       "train_tokens_seen": aux_data.ntokens * step,
