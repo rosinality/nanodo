@@ -31,17 +31,17 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.seed = 42
 
     # Data
-    cfg.batch_size = 320 * 2  # Global batch size. Must be divisible by the #devices.
+    cfg.batch_size = 160 * 2  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 1024
-    n_layer = 23
+    dim = 640
+    n_layer = 15
     seq_len = 1024
     
-    cfg.scale = 13
+    cfg.scale = 10
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
@@ -75,6 +75,7 @@ def get_config() -> ml_collections.ConfigDict:
         embed_init_str="normal-0.01",
         z_loss=1e-4,
         attn_logit_softcapping=50,
+        post_norm=False
     )
 
     # Optimizer

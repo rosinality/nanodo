@@ -40,6 +40,19 @@ def orthogonal_init(column_axis: int = -1, in_axis=-2, out_axis=-1, dtype=jnp.fl
     return init
 
 
+def flops_per_token(n_layer, d_model, l_seq):
+    M = 87 * n_layer * d_model**2 + 12 * n_layer * d_model * l_seq
+
+    return M
+
+
+def model_params(n_layer, d_model, n_vocab):
+    n_param = n_layer * (d_model * d_model * 4 + d_model * d_model * 3.5 * 3)
+    n_param = n_param + n_vocab * d_model + ((n_layer + 1) * d_model)
+
+    return n_param
+
+
 @dataclasses.dataclass
 class DoConfig:
     """Hyper-parameters for Transformer decoder-only."""
@@ -59,7 +72,15 @@ class DoConfig:
         1.0, "fan_in", "normal"
     )
     dtype: jnp.dtype = jnp.float32
+    embed_init_str: str = "fan_in-1.0"
+    kernel_init_str: str = "xavier_uniform"
+    output_kernel_init_str: str = "fan_in-1"
+    head_init_str: str = "fan_in-1.0"
+    z_loss: float = 0
     fsdp_enabled: bool = True
+    attn_logit_softcapping: float = 0
+    qk_layernorm: bool = False
+    post_norm: bool = False
 
     # Transformer block rematerialization / gradient checkpointing to save memory.
     remat: bool = False
@@ -137,10 +158,21 @@ class TBlock(nn.Module):
         # "pre-layernorm"
         x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(in_BxLxD)
         x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
+
+        if cfg.post_norm:
+            x_BxLxD = nn.RMSNorm(
+                dtype=cfg.dtype, scale_init=nn.initializers.constant(1 / (cfg.N**0.5))
+            )(x_BxLxD)
+
         x_BxLxD += in_BxLxD
 
         z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
         z_BxLxD = Mlp(cfg)(z_BxLxD)
+
+        if cfg.post_norm:
+            z_BxLxD = nn.RMSNorm(
+                dtype=cfg.dtype, scale_init=nn.initializers.constant(1 / (cfg.N**0.5))
+            )(z_BxLxD)
 
         return x_BxLxD + z_BxLxD
 
@@ -194,10 +226,25 @@ class CausalAttn(nn.Module):
             multilinear(name="key")(x_BxLxD),
             multilinear(name="value")(x_BxLxD),
         )
+
+        if cfg.qk_layernorm:
+            q_BxLxHxDh = nn.LayerNorm(
+                dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False
+            )(q_BxLxHxDh)
+            k_BxLxHxDh = nn.LayerNorm(
+                dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False
+            )(k_BxLxHxDh)
+
         q_BxLxHxDh = apply_rope(q_BxLxHxDh, positions, Dh)
         k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
         q_BxLxHxDh /= Dh**0.5
         att_BxHxLxL = jnp.einsum("...qhd,...khd->...hqk", q_BxLxHxDh, k_BxLxHxDh)
+
+        if cfg.attn_logit_softcapping > 0:
+            att_BxHxLxL /= cfg.attn_logit_softcapping
+            att_BxHxLxL = jnp.tanh(att_BxHxLxL)
+            att_BxHxLxL *= cfg.attn_logit_softcapping
+
         # cast to fp32 for softmax
         att_BxHxLxL = att_BxHxLxL.astype(jnp.float32)
 

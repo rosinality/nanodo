@@ -15,6 +15,7 @@
 
 # pylint: disable=invalid-name,g-import-not-at-top,unused-import
 
+from functools import partial
 from typing import TYPE_CHECKING
 
 from flax import linen as nn
@@ -33,7 +34,7 @@ def get_model_and_loss(
 
   # default model and configs
   m = model
-  get_loss_fn = loss_lib.get_default_loss_fn
+  get_loss_fn = partial(loss_lib.get_default_loss_fn, vocab_size=vocab_size)
 
   cfg = m.DoConfig(**c.model, V=vocab_size)  # pytype:disable=attribute-error
   module = m.TransformerDo(cfg)  # pytype:disable=attribute-error

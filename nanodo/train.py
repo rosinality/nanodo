@@ -18,6 +18,7 @@
 import functools
 import time
 from typing import Any, Iterator, TYPE_CHECKING
+import math
 
 from absl import logging
 from clu import metric_writers
@@ -55,6 +56,14 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
+    c.opt.num_train_steps = int(math.ceil(c.base_train_steps * c.flops_multiplier))
+
+    run_name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
+    memo = c.get("memo", "")
+
+    if memo != "":
+        run_name = f"{run_name}-{memo}"
+
     if jax.process_index() == 0:
         config = dict(
             dim=c.model.D,
@@ -65,21 +74,44 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             learning_rate=c.opt.peak_learning_rate,
             warmup_steps=c.opt.warmup_steps,
             weight_decay=c.opt.weight_decay,
+            independent_weight_decay=c.opt.independent_weight_decay,
             eps=1e-9,
             beta1=0.9,
             beta2=0.98,
-            embed_init="fan_in",
-            kernel_init="xavier_uniform",
-            logit_init="fan_in",
+            embed_init=c.model.embed_init_str,
+            kernel_init=c.model.kernel_init_str,
+            output_kernel_init=c.model.head_init_str,
+            head_init=c.model.head_init_str,
             embed_multiplier=1,
             lr_multiplier=1,
         )
-        wandb.init(project="nanodo", config=config)
+
+        wandb.init(
+            project="nanodo",
+            config=config,
+            name=run_name,
+            group=f"flops-{c.flops_multiplier}",
+        )
+
+    print(
+        "Scale",
+        c.scale,
+        "Flops multiplier",
+        c.flops_multiplier,
+        "Train steps",
+        c.opt.num_train_steps,
+        "Warmup",
+        c.opt.warmup_steps,
+    )
 
     mesh = Mesh(mesh_utils.create_device_mesh((jax.device_count(),)), ("data",))
     # For multistep gradient accumulator to simulate large batch sizes.
     grad_accumulation_steps = c.get("grad_accumulation_steps", 1)
     micro_batch_size, r = divmod(c.batch_size, grad_accumulation_steps)
+
+    if jax.process_index() == 0:
+        print(f"Batch size: {c.batch_size}, Device Count: {jax.device_count()}")
+
     if grad_accumulation_steps > 1:
         logging.info("Gradient accumulation steps: %d", grad_accumulation_steps)
         logging.info(
@@ -122,7 +154,16 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     train_iter = iter(train_ds)
 
     if c.checkpoint:
-        ckpt_mngr = _get_ckpt_manager(c.workdir, c)
+        checkpoint_path = c.get("checkpoint_path", None)
+
+        if checkpoint_path is None:
+            checkpoint_path = c.workdir
+
+        checkpoint_path = os.path.join(checkpoint_path, run_name)
+
+        print("Checkpoint path", checkpoint_path)
+
+        ckpt_mngr = _get_ckpt_manager(checkpoint_path, c)
         if c.checkpoint_restore_dir is not None:
             logging.info("Restoring checkpoint from %s", c.checkpoint_restore_dir)
             ex_ckpt_mngr = _get_ckpt_manager(c.checkpoint_restore_dir, c)
@@ -130,7 +171,9 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
 
         elif ckpt_mngr.latest_step() is not None:
             latest_step = ckpt_mngr.latest_step()
-            logging.info("Restoring checkpoint %d from %s", latest_step, c.workdir)
+            logging.info(
+                "Restoring checkpoint %d from %s", latest_step, checkpoint_path
+            )
             state, train_iter = _restore_ckpt(ckpt_mngr, state, train_iter)
 
     trainer = Trainer(
@@ -150,6 +193,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             c.eval_max_target_length,
         )
     eval_batch_size = c.get("eval_batch_size", micro_batch_size)
+    assert eval_batch_size == 256
     if eval_batch_size % jax.device_count() != 0:
         raise ValueError("Eval Batch size must be divisible by the number of devices.")
 
@@ -192,9 +236,8 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     else:
         hooks = []
 
-    def _eval():
+    def _eval(step):
         with report_progress.timed("eval"):
-            step = trainer.step
             eval_metrics = evaluator.eval(trainer.state.params)
             if jax.process_index() == 0:
                 wandb.log(eval_metrics, step=step)
@@ -232,9 +275,9 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     for step in range(trainer.step, c.opt.num_train_steps + 1):
         is_final_step = step == c.opt.num_train_steps
         if step % c.eval_every_steps == 0 or is_final_step:
-            _eval()
-        # if step % c.checkpoint_every_steps == 0 or is_final_step:
-        #     _checkpoint()
+            _eval(step)
+        if step % c.checkpoint_every_steps == 0 or is_final_step:
+            _checkpoint()
 
         for h in hooks:
             h(step)

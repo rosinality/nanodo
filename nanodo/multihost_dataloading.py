@@ -117,3 +117,9 @@ class MultiHostDataLoadIterator:
 
   def __next__(self):
     return get_next_batch_sharded(self.local_iterator, self.global_mesh)
+  
+  def get_state(self):
+    return self.local_iterator.get_state()
+  
+  def set_state(self, state):
+    self.local_iterator.set_state(state)

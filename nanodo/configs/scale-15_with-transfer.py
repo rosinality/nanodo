@@ -31,21 +31,21 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.seed = 42
 
     # Data
-    cfg.batch_size = 320 * 2  # Global batch size. Must be divisible by the #devices.
+    cfg.batch_size = 512  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 1024
-    n_layer = 23
+    dim = 1344
+    n_layer = 26
     seq_len = 1024
     
-    cfg.scale = 13
+    cfg.scale = 15
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
-    cfg.base_train_steps = base_flops / flops / seq_len / cfg.batch_size
+    cfg.base_train_steps = 15000
     cfg.flops_multiplier = 1
 
     # Transformer
@@ -79,18 +79,18 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=math.ceil(cfg.base_train_steps),  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=15000,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=math.ceil(params / seq_len / cfg.batch_size),
+        warmup_steps=660,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
-        b2=0.99,
+        b2=0.98,
         layerwise_lr_multiplier={"kernel": 384 / dim},
     )
 
@@ -124,5 +124,6 @@ def get_config() -> ml_collections.ConfigDict:
     # Buffer size (in unit of batches) for the data loader. Default to 2 so we
     # always prefetch another batch
     cfg.pygrain_worker_buffer_size = 2
+    cfg.grad_accumulation_steps = 1
 
     return cfg
