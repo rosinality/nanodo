@@ -165,6 +165,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         num_records=None,
         preprocessing=data.Preprocess.PADDED,
         shuffle=False,
+        preload_all=c.eval_steps,
     )
     evaluator = evaluate.Evaluator(c, model, eval_ds, mesh, shardings)
 

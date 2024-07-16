@@ -88,6 +88,7 @@ def py_batched_tfds(
     preprocessing: Preprocess = Preprocess.NOAM_PACKED,
     worker_buffer_size: int = 2,
     shuffle: bool = True,
+    preload_all: int = 0,
 ) -> grain.DataLoader:
     """Returns iterator for regularly batched text examples."""
     # datasource = tfds.data_source(tfds_name, split=split)
@@ -151,6 +152,16 @@ def py_batched_tfds(
         worker_count=worker_count,
         worker_buffer_size=worker_buffer_size,
     )
+
+    if preload_all > 0:
+        data = []
+        for i, batch in enumerate(batched_dataloader):
+            data.append(batch)
+            if i >= preload_all:
+                break
+
+        batched_dataloader = data
+
     return MultiHostDataLoadIterator(batched_dataloader, global_mesh)
 
 
