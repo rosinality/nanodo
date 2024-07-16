@@ -170,8 +170,9 @@ def get_default_loss_fn(
         # losses_BxL = losses.softmax_cross_entropy_with_integer_labels(
         #     logits_BxLxV, y_BxL
         # )
+        onehot = jax.nn.one_hot(y_BxL, vocab_size)
         losses_BxL, z_loss_BxL = cross_entropy_with_logits(
-            logits_BxLxV, y_BxL, c.model.z_loss
+            logits_BxLxV, onehot, c.model.z_loss
         )
         ntokens = weights_BxL.sum()
         mean_loss = jnp.sum(losses_BxL * weights_BxL) / ntokens
