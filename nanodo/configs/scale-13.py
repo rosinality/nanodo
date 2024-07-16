@@ -48,9 +48,7 @@ def get_config() -> ml_collections.ConfigDict:
         fsdp_enabled=True,  # True to shard the model.
         remat=False,  # Transformer block gradient checkpointing to save memory.
         kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
-        output_kernel_init=nn.initializers.variance_scaling(
-            1.0 / n_layer, "fan_in", "normal"
-        ),
+        output_kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
         embed_init=nn.initializers.normal(0.02),
     )
 
