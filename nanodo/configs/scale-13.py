@@ -47,9 +47,15 @@ def get_config() -> ml_collections.ConfigDict:
         dtype="bfloat16",  # computation dtype.
         fsdp_enabled=True,  # True to shard the model.
         remat=False,  # Transformer block gradient checkpointing to save memory.
-        kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
-        output_kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
-        embed_init=nn.initializers.normal(0.02),
+        # kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
+        kernel_init=nn.initializers.xavier_uniform(),
+        # output_kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
+        output_kernel_init=nn.initializers.xavier_uniform(),
+        head_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
+        # embed_init=nn.initializers.normal(0.02),
+        embed_init=nn.initializers.variance_scaling(
+            1.0, "fan_in", "normal", out_axis=0
+        ),
     )
 
     # Optimizer
