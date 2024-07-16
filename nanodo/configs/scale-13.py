@@ -48,16 +48,22 @@ def get_config() -> ml_collections.ConfigDict:
         fsdp_enabled=True,  # True to shard the model.
         remat=False,  # Transformer block gradient checkpointing to save memory.
         kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
+        # kernel_init=nn.initializers.xavier_uniform(),
         output_kernel_init=nn.initializers.variance_scaling(
             1.0 / n_layer, "fan_in", "normal"
         ),
+        # output_kernel_init=nn.initializers.xavier_uniform(),
+        head_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
         embed_init=nn.initializers.normal(0.01),
+        # embed_init=nn.initializers.variance_scaling(
+        #     1.0, "fan_in", "normal", out_axis=0
+        # ),
     )
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
         num_train_steps=45501,  # Note: lm1b has 30,301,028 training examples
-        peak_learning_rate=3e-4,
+        peak_learning_rate=5e-4,
         init_learning_rate=0,
         final_learning_rate=3e-5,
         warmup_steps=1000,
@@ -66,6 +72,7 @@ def get_config() -> ml_collections.ConfigDict:
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=True,
+        weight_decay_exclusion_names=("bias", "scale"),
     )
 
     # Checkpointing

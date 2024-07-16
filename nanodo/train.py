@@ -165,6 +165,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         num_records=None,
         preprocessing=data.Preprocess.PADDED,
         shuffle=False,
+        preload_all=c.eval_steps,
     )
     evaluator = evaluate.Evaluator(c, model, eval_ds, mesh, shardings)
 
@@ -173,7 +174,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         just_logging=jax.process_index() > 0,
     )
     if trainer.step == 0:
-        writer.write_hparams(dict(c))
+        # writer.write_hparams(dict(c))
         writer.write_scalars(trainer.step, {"jit_compilation_time": init_time})
 
     report_progress = periodic_actions.ReportProgress(

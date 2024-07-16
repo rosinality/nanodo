@@ -81,7 +81,7 @@ class TransformerDo(nn.Module):
         block = nn.remat(TBlock) if cfg.remat else TBlock
         self.blocks = [block(cfg) for _ in range(cfg.N)]
         self.out_ln = nn.RMSNorm(dtype=cfg.dtype)
-        self.head = nn.Dense(cfg.D, use_bias=False)
+        self.head = nn.Dense(cfg.V, use_bias=False, kernel_init=fsdp.init("head", cfg))
 
     def __call__(self, y_BxL: jax.Array):
         # For training on concatenated examples.
