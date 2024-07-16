@@ -68,7 +68,7 @@ def get_config() -> ml_collections.ConfigDict:
         final_learning_rate=3e-5,
         warmup_steps=1000,
         decay_type="cosine",
-        weight_decay=1e-4,
+        weight_decay=0.1,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=False,
