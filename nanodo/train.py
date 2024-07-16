@@ -70,6 +70,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             beta2=0.98,
             embed_init="fan_in",
             kernel_init="xavier_uniform",
+            logit_init="fan_in",
             embed_multiplier=1,
             lr_multiplier=1,
         )
