@@ -51,7 +51,7 @@ def init(layer_type: str, docfg: DoConfig, output_linear=False) -> nn.initialize
     return partition_fn(kernel_init, ("data", None))
   elif layer_type == "head":  # [D, V]
     if hasattr(docfg, "head_init"):
-      return partition_fn(head_init, ("data", None))
+      return partition_fn(docfg.head_init, ("data", None))
     else:
       return partition_fn(kernel_init, ("data", None))
   else:
