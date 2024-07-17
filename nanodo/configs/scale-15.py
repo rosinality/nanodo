@@ -35,7 +35,7 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 1312
+    dim = 1344
     n_layer = 26
 
     # Transformer
