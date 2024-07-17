@@ -31,14 +31,14 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.seed = 42
 
     # Data
-    cfg.batch_size = 512 * 2  # Global batch size. Must be divisible by the #devices.
+    cfg.batch_size = 256 * 2  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 1312
-    n_layer = 26
+    dim = 832
+    n_layer = 21
     seq_len = 1024
     
     cfg.scale = 10
