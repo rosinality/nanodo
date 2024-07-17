@@ -11,7 +11,7 @@ sudo NEEDRESTART_MODE=a apt-get install -y python3.10-venv gcsfuse
 
 mkdir -p ~/rosinality-tpu-bucket
 gcsfuse -o ro --implicit-dirs --http-client-timeout=5s --max-conns-per-host=2000 \
-        "rosinality-tpu-bucket" "~/rosinality-tpu-bucket"
+        "${GCP_BUCKET}" "~/rosinality-tpu-bucket"
 
 python3.10 -m venv dev
 
