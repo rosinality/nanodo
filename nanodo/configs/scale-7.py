@@ -33,6 +33,7 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
+    cfg.eval_batch_size = 256
 
     dim = 384
     n_layer = 10
@@ -68,11 +69,11 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=6971,  # Note: lm1b has 30,301,028 training examples
-        peak_learning_rate=2e-3,
+        num_train_steps=3486,  # Note: lm1b has 30,301,028 training examples
+        peak_learning_rate=5e-3,
         init_learning_rate=0,
         final_learning_rate=2e-4,
-        warmup_steps=349,
+        warmup_steps=175,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.

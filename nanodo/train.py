@@ -152,6 +152,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             c.eval_max_target_length,
         )
     eval_batch_size = c.get("eval_batch_size", micro_batch_size)
+    assert eval_batch_size == 256
     if eval_batch_size % jax.device_count() != 0:
         raise ValueError("Eval Batch size must be divisible by the number of devices.")
 
