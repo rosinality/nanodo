@@ -56,7 +56,7 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
-    c.opt.num_train_steps = math.ceil(c.base_train_steps * c.flops_multiplier)
+    c.opt.num_train_steps = int(math.ceil(c.base_train_steps * c.flops_multiplier))
 
     if jax.process_index() == 0:
         config = dict(
