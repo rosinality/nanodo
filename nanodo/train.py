@@ -82,6 +82,10 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     # For multistep gradient accumulator to simulate large batch sizes.
     grad_accumulation_steps = c.get("grad_accumulation_steps", 1)
     micro_batch_size, r = divmod(c.batch_size, grad_accumulation_steps)
+    
+    if jax.process_index() == 0:
+        print(f"Batch size: {c.batch_size}, Device Count: {jax.device_count()}")
+    
     if grad_accumulation_steps > 1:
         logging.info("Gradient accumulation steps: %d", grad_accumulation_steps)
         logging.info(
