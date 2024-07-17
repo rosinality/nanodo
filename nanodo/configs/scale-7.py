@@ -17,10 +17,12 @@ Usage:
 /bin/bash third_party/py/nanodo/run.sh --config=default
 """
 
+import math
+
 from flax import linen as nn
 import ml_collections
 
-from nanodo.model import orthogonal_init
+from nanodo.model import orthogonal_init, flops_per_token, model_params
 
 
 def get_config() -> ml_collections.ConfigDict:
@@ -37,12 +39,20 @@ def get_config() -> ml_collections.ConfigDict:
 
     dim = 384
     n_layer = 10
+    seq_len = 1024
+    
+    cfg.scale = 4
+    base_flops = 124611846576537600
+    flops = flops_per_token(n_layer, dim, seq_len)
+    params = model_params(n_layer, dim, 32101)
+    cfg.base_train_steps = base_flops / flops / seq_len / cfg.batch_size
+    cfg.flops_multiplier = 1
 
     # Transformer
     cfg.model = ml_collections.config_dict.create(
         D=dim,  # model/embed dim  = qkv dim
         H=4,  # num attention heads
-        L=1024,  # max context/sequence length (move out of config?)
+        L=seq_len,  # max context/sequence length (move out of config?)
         N=n_layer,  # number of transformer block layers
         F=int(dim * 3.5),  # FF inner dimension
         dtype="bfloat16",  # computation dtype.
@@ -69,17 +79,18 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=4960,  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=cfg.base_train_steps,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=206,
+        warmup_steps=math.ceil(params / seq_len / cfg.batch_size),
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
+        b2=0.99,
         layerwise_lr_multiplier={"kernel": 384 / dim},
     )
 

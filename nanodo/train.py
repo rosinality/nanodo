@@ -18,6 +18,7 @@
 import functools
 import time
 from typing import Any, Iterator, TYPE_CHECKING
+import math
 
 from absl import logging
 from clu import metric_writers
@@ -55,6 +56,8 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
+    c.opt.num_train_steps = math.ceil(c.base_train_steps * c.flops_multiplier)
+
     if jax.process_index() == 0:
         config = dict(
             dim=c.model.D,
@@ -76,16 +79,32 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             embed_multiplier=1,
             lr_multiplier=1,
         )
-        wandb.init(project="nanodo", config=config)
+        wandb.init(
+            project="nanodo",
+            config=config,
+            name=f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}",
+            group=f"flops-{c.flops_multiplier}",
+        )
+
+    print(
+        "Scale",
+        c.scale,
+        "Flops multiplier",
+        c.flops_multiplier,
+        "Train steps",
+        c.opt.num_train_steps,
+        "Warmup",
+        c.opt.warmup_steps,
+    )
 
     mesh = Mesh(mesh_utils.create_device_mesh((jax.device_count(),)), ("data",))
     # For multistep gradient accumulator to simulate large batch sizes.
     grad_accumulation_steps = c.get("grad_accumulation_steps", 1)
     micro_batch_size, r = divmod(c.batch_size, grad_accumulation_steps)
-    
+
     if jax.process_index() == 0:
         print(f"Batch size: {c.batch_size}, Device Count: {jax.device_count()}")
-    
+
     if grad_accumulation_steps > 1:
         logging.info("Gradient accumulation steps: %d", grad_accumulation_steps)
         logging.info(

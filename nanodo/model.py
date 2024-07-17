@@ -40,6 +40,19 @@ def orthogonal_init(column_axis: int = -1, in_axis=-2, out_axis=-1, dtype=jnp.fl
     return init
 
 
+def flops_per_token(n_layer, d_model, l_seq):
+    M = 87 * n_layer * d_model ** 2 + 12 * n_layer * d_model * l_seq
+
+    return M
+
+
+def model_params(n_layer, d_model, n_vocab):
+    n_param = n_layer * (d_model * d_model * 4 + d_model * d_model * 3.5 * 3)
+    n_param = n_param + n_vocab * d_model + ((n_layer + 1) * d_model)
+    
+    return n_param
+
+
 @dataclasses.dataclass
 class DoConfig:
     """Hyper-parameters for Transformer decoder-only."""
