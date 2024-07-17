@@ -79,7 +79,7 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=cfg.base_train_steps,  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=math.ceil(cfg.base_train_steps),  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
