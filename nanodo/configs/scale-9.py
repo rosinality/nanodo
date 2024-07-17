@@ -41,7 +41,7 @@ def get_config() -> ml_collections.ConfigDict:
     n_layer = 14
     seq_len = 1024
     
-    cfg.scale = 4
+    cfg.scale = 9
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
