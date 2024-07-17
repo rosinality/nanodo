@@ -35,8 +35,8 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 384
-    n_layer = 10
+    dim = 320
+    n_layer = 9
 
     # Transformer
     cfg.model = ml_collections.config_dict.create(
@@ -69,7 +69,7 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=4960,  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=3486,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=5e-3,
         init_learning_rate=0,
         final_learning_rate=2e-4,
