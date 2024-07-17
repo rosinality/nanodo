@@ -80,7 +80,7 @@ def get_config() -> ml_collections.ConfigDict:
         optimizer="adamw",
         independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
-        layerwise_lr_multiplier={"kernel": 384 / 288},
+        layerwise_lr_multiplier={"kernel": 384 / dim},
     )
 
     # Checkpointing

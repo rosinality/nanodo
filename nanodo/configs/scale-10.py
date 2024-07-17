@@ -69,18 +69,18 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=3486,  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=1358,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=5e-3,
         init_learning_rate=0,
         final_learning_rate=2e-4,
-        warmup_steps=175,
+        warmup_steps=335,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
-        layerwise_lr_multiplier={"kernel": 384 / 384},
+        layerwise_lr_multiplier={"kernel": 384 / dim},
     )
 
     # Checkpointing
