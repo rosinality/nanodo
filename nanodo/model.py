@@ -65,6 +65,7 @@ class DoConfig:
     head_init_str: str = "fan_in-1.0"
     z_loss: float = 0
     fsdp_enabled: bool = True
+    attn_logit_softcapping: float = 0
 
     # Transformer block rematerialization / gradient checkpointing to save memory.
     remat: bool = False
@@ -203,6 +204,12 @@ class CausalAttn(nn.Module):
         k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
         q_BxLxHxDh /= Dh**0.5
         att_BxHxLxL = jnp.einsum("...qhd,...khd->...hqk", q_BxLxHxDh, k_BxLxHxDh)
+
+        if cfg.attn_logit_softcapping > 0:
+            att_BxHxLxL /= cfg.attn_logit_softcapping
+            att_BxHxLxL = jnp.tanh(att_BxHxLxL)
+            att_BxHxLxL *= cfg.attn_logit_softcapping
+
         # cast to fp32 for softmax
         att_BxHxLxL = att_BxHxLxL.astype(jnp.float32)
 
