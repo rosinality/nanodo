@@ -29,7 +29,7 @@ def get_optimizer(c: "ml_collections.ConfigDict") -> optax.MultiSteps:
     """Get optimizer."""
     optimizer = _get_base_optimizer(c)
 
-    print("layerwise lr multiplier", c.get("layerwise_lr_multiplier", None))
+    print("layerwise lr multiplier", dict(c.get("layerwise_lr_multiplier", None)))
     if c.get("layerwise_lr_multiplier", None) is not None:
         scale_dict = dict(c.layerwise_lr_multiplier)
         optimizer = optax.chain(optimizer, _scale_by_dict(scale_dict))
