@@ -29,6 +29,7 @@ def get_optimizer(c: "ml_collections.ConfigDict") -> optax.MultiSteps:
     """Get optimizer."""
     optimizer = _get_base_optimizer(c)
 
+    print("layerwise lr multiplier", c.get("layerwise_lr_multiplier", None))
     if c.get("layerwise_lr_multiplier", None) is not None:
         scale_dict = dict(c.layerwise_lr_multiplier)
         optimizer = optax.chain(optimizer, _scale_by_dict(scale_dict))
@@ -229,6 +230,7 @@ def _scale_by_dict(scale_dict: dict[str, float]) -> optax.GradientTransformation
         def scale(keys, x):
             # Convert to str "module_name_1/module_name_2/.../kernel"
             str_keys = "/".join([k.key for k in keys if hasattr(k, "key")])
+            print("scaling lr", scale_dict)
             for which_to_rescale, multiplier in scale_dict.items():
                 if which_to_rescale in str_keys:
                     if jax.process_index() == 0:
