@@ -33,7 +33,7 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
-    cfg.eval_batch_size = 256
+    cfg.eval_batch_size = 128
 
     dim = 384
     n_layer = 10
