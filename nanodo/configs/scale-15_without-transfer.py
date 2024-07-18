@@ -45,7 +45,7 @@ def get_config() -> ml_collections.ConfigDict:
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
-    cfg.base_train_steps = base_flops / flops / seq_len / cfg.batch_size
+    cfg.base_train_steps = 15000
     cfg.flops_multiplier = 1
 
     # Transformer
@@ -79,11 +79,11 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=math.ceil(cfg.base_train_steps),  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=15000,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=math.ceil(params / seq_len / cfg.batch_size),
+        warmup_steps=660,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
