@@ -218,9 +218,8 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     else:
         hooks = []
 
-    def _eval():
+    def _eval(step):
         with report_progress.timed("eval"):
-            step = trainer.step
             eval_metrics = evaluator.eval(trainer.state.params)
             if jax.process_index() == 0:
                 wandb.log(eval_metrics, step=step)
@@ -258,7 +257,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     for step in range(trainer.step, c.opt.num_train_steps + 1):
         is_final_step = step == c.opt.num_train_steps
         if step % c.eval_every_steps == 0 or is_final_step:
-            _eval()
+            _eval(step)
         # if step % c.checkpoint_every_steps == 0 or is_final_step:
         #     _checkpoint()
 
