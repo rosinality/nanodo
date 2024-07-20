@@ -124,5 +124,6 @@ def get_config() -> ml_collections.ConfigDict:
     # Buffer size (in unit of batches) for the data loader. Default to 2 so we
     # always prefetch another batch
     cfg.pygrain_worker_buffer_size = 2
+    cfg.grad_accumulation_steps = 1
 
     return cfg
