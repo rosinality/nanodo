@@ -168,7 +168,7 @@ class TBlock(nn.Module):
         z_BxLxD = Mlp(cfg)(z_BxLxD)
         
         if cfg.post_norm:
-            x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(z_BxLxD)
+            z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(z_BxLxD)
 
         return x_BxLxD + z_BxLxD
 
