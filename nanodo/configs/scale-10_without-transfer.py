@@ -75,6 +75,7 @@ def get_config() -> ml_collections.ConfigDict:
         embed_init_str="normal-0.01",
         z_loss=1e-4,
         attn_logit_softcapping=50,
+        qk_layernorm=False,
         post_norm=False
     )
 
