@@ -80,6 +80,7 @@ class DoConfig:
     fsdp_enabled: bool = True
     attn_logit_softcapping: float = 0
     qk_layernorm: bool = False
+    post_norm: bool = False
 
     # Transformer block rematerialization / gradient checkpointing to save memory.
     remat: bool = False
@@ -157,10 +158,17 @@ class TBlock(nn.Module):
         # "pre-layernorm"
         x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(in_BxLxD)
         x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
+        
+        if cfg.post_norm:
+            x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
+        
         x_BxLxD += in_BxLxD
 
         z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
         z_BxLxD = Mlp(cfg)(z_BxLxD)
+        
+        if cfg.post_norm:
+            x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(z_BxLxD)
 
         return x_BxLxD + z_BxLxD
 
