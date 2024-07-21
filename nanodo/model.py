@@ -79,6 +79,7 @@ class DoConfig:
     z_loss: float = 0
     fsdp_enabled: bool = True
     attn_logit_softcapping: float = 0
+    qk_layernorm: bool = False
 
     # Transformer block rematerialization / gradient checkpointing to save memory.
     remat: bool = False
@@ -213,6 +214,11 @@ class CausalAttn(nn.Module):
             multilinear(name="key")(x_BxLxD),
             multilinear(name="value")(x_BxLxD),
         )
+        
+        if cfg.qk_layernorm:
+            q_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1))(q_BxLxHxDh)
+            k_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1))(k_BxLxHxDh)
+        
         q_BxLxHxDh = apply_rope(q_BxLxHxDh, positions, Dh)
         k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
         q_BxLxHxDh /= Dh**0.5

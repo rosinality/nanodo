@@ -79,10 +79,17 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             embed_multiplier=1,
             lr_multiplier=1,
         )
+        
+        name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
+        memo = c.get("memo", None)
+        
+        if memo is not None:
+            name = f"{name}-{memo}"
+        
         wandb.init(
             project="nanodo",
             config=config,
-            name=f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}",
+            name=name,
             group=f"flops-{c.flops_multiplier}",
         )
 
