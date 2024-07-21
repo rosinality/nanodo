@@ -81,9 +81,9 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         )
         
         name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
-        memo = c.get("memo", None)
+        memo = c.get("memo", "")
         
-        if memo is not None:
+        if memo != "":
             name = f"{name}-{memo}"
         
         wandb.init(
