@@ -216,8 +216,8 @@ class CausalAttn(nn.Module):
         )
         
         if cfg.qk_layernorm:
-            q_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1))(q_BxLxHxDh)
-            k_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1))(k_BxLxHxDh)
+            q_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False)(q_BxLxHxDh)
+            k_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False)(k_BxLxHxDh)
         
         q_BxLxHxDh = apply_rope(q_BxLxHxDh, positions, Dh)
         k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
