@@ -41,7 +41,7 @@ def orthogonal_init(column_axis: int = -1, in_axis=-2, out_axis=-1, dtype=jnp.fl
 
 
 def flops_per_token(n_layer, d_model, l_seq):
-    M = 87 * n_layer * d_model ** 2 + 12 * n_layer * d_model * l_seq
+    M = 87 * n_layer * d_model**2 + 12 * n_layer * d_model * l_seq
 
     return M
 
@@ -49,7 +49,7 @@ def flops_per_token(n_layer, d_model, l_seq):
 def model_params(n_layer, d_model, n_vocab):
     n_param = n_layer * (d_model * d_model * 4 + d_model * d_model * 3.5 * 3)
     n_param = n_param + n_vocab * d_model + ((n_layer + 1) * d_model)
-    
+
     return n_param
 
 
@@ -158,17 +158,21 @@ class TBlock(nn.Module):
         # "pre-layernorm"
         x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(in_BxLxD)
         x_BxLxD = CausalAttn(cfg)(x_BxLxD, positions)
-        
+
         if cfg.post_norm:
-            x_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
-        
+            x_BxLxD = nn.RMSNorm(
+                dtype=cfg.dtype, scale_init=nn.initializers.constant(1 / (cfg.N**0.5))
+            )(x_BxLxD)
+
         x_BxLxD += in_BxLxD
 
         z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(x_BxLxD)
         z_BxLxD = Mlp(cfg)(z_BxLxD)
-        
+
         if cfg.post_norm:
-            z_BxLxD = nn.RMSNorm(dtype=cfg.dtype)(z_BxLxD)
+            z_BxLxD = nn.RMSNorm(
+                dtype=cfg.dtype, scale_init=nn.initializers.constant(1 / (cfg.N**0.5))
+            )(z_BxLxD)
 
         return x_BxLxD + z_BxLxD
 
@@ -222,11 +226,15 @@ class CausalAttn(nn.Module):
             multilinear(name="key")(x_BxLxD),
             multilinear(name="value")(x_BxLxD),
         )
-        
+
         if cfg.qk_layernorm:
-            q_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False)(q_BxLxHxDh)
-            k_BxLxHxDh = nn.LayerNorm(dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False)(k_BxLxHxDh)
-        
+            q_BxLxHxDh = nn.LayerNorm(
+                dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False
+            )(q_BxLxHxDh)
+            k_BxLxHxDh = nn.LayerNorm(
+                dtype=cfg.dtype, feature_axes=(-2, -1), use_bias=False
+            )(k_BxLxHxDh)
+
         q_BxLxHxDh = apply_rope(q_BxLxHxDh, positions, Dh)
         k_BxLxHxDh = apply_rope(k_BxLxHxDh, positions, Dh)
         q_BxLxHxDh /= Dh**0.5
