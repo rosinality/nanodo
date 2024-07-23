@@ -75,6 +75,8 @@ def get_config() -> ml_collections.ConfigDict:
         embed_init_str="normal-0.01",
         z_loss=1e-4,
         attn_logit_softcapping=50,
+        qk_layernorm=False,
+        post_norm=False
     )
 
     # Optimizer
@@ -125,5 +127,6 @@ def get_config() -> ml_collections.ConfigDict:
     # always prefetch another batch
     cfg.pygrain_worker_buffer_size = 2
     cfg.grad_accumulation_steps = 1
+    cfg.memo = ""
 
     return cfg
