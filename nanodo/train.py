@@ -58,6 +58,12 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
 
     c.opt.num_train_steps = int(math.ceil(c.base_train_steps * c.flops_multiplier))
 
+    run_name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
+    memo = c.get("memo", "")
+
+    if memo != "":
+        run_name = f"{name}-{memo}"
+
     if jax.process_index() == 0:
         config = dict(
             dim=c.model.D,
@@ -80,16 +86,10 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             lr_multiplier=1,
         )
 
-        name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
-        memo = c.get("memo", "")
-
-        if memo != "":
-            name = f"{name}-{memo}"
-
         wandb.init(
             project="nanodo",
             config=config,
-            name=name,
+            name=run_name,
             group=f"flops-{c.flops_multiplier}",
         )
 
@@ -159,9 +159,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         if checkpoint_path is None:
             checkpoint_path = c.workdir
 
-        checkpoint_path = os.path.join(
-            checkpoint_path, wandb.run.name + f"-{wandb.run.id}"
-        )
+        checkpoint_path = os.path.join(checkpoint_path, run_name)
 
         print("Checkpoint path", checkpoint_path)
 
