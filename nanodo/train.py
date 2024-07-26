@@ -62,7 +62,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     memo = c.get("memo", "")
 
     if memo != "":
-        run_name = f"{name}-{memo}"
+        run_name = f"{run_name}-{memo}"
 
     if jax.process_index() == 0:
         config = dict(
