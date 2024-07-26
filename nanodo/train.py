@@ -79,13 +79,13 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
             embed_multiplier=1,
             lr_multiplier=1,
         )
-        
+
         name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}"
         memo = c.get("memo", "")
-        
+
         if memo != "":
             name = f"{name}-{memo}"
-        
+
         wandb.init(
             project="nanodo",
             config=config,
@@ -154,7 +154,18 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     train_iter = iter(train_ds)
 
     if c.checkpoint:
-        ckpt_mngr = _get_ckpt_manager(c.workdir, c)
+        checkpoint_path = c.get("checkpoint_path", None)
+
+        if checkpoint_path is None:
+            checkpoint_path = c.workdir
+
+        checkpoint_path = os.path.join(
+            checkpoint_path, wandb.run.name + f"-{wandb.run.id}"
+        )
+
+        print("Checkpoint path", checkpoint_path)
+
+        ckpt_mngr = _get_ckpt_manager(checkpoint_path, c)
         if c.checkpoint_restore_dir is not None:
             logging.info("Restoring checkpoint from %s", c.checkpoint_restore_dir)
             ex_ckpt_mngr = _get_ckpt_manager(c.checkpoint_restore_dir, c)
@@ -162,7 +173,9 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
 
         elif ckpt_mngr.latest_step() is not None:
             latest_step = ckpt_mngr.latest_step()
-            logging.info("Restoring checkpoint %d from %s", latest_step, c.workdir)
+            logging.info(
+                "Restoring checkpoint %d from %s", latest_step, checkpoint_path
+            )
             state, train_iter = _restore_ckpt(ckpt_mngr, state, train_iter)
 
     trainer = Trainer(
@@ -265,8 +278,8 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         is_final_step = step == c.opt.num_train_steps
         if step % c.eval_every_steps == 0 or is_final_step:
             _eval(step)
-        # if step % c.checkpoint_every_steps == 0 or is_final_step:
-        #     _checkpoint()
+        if step % c.checkpoint_every_steps == 0 or is_final_step:
+            _checkpoint()
 
         for h in hooks:
             h(step)

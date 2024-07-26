@@ -98,8 +98,9 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Checkpointing
     cfg.workdir = "/home/rosinality/results"
+    cfg.checkpoint_path = "gs://turing-tpu-bucket/"
     cfg.checkpoint = True
-    cfg.checkpoint_every_steps = 2000
+    cfg.checkpoint_every_steps = 5000
     # Path to the checkpoint to be restored. Note than new checkpoints will be
     # saved to the new workdir.
     cfg.checkpoint_restore_dir = None
