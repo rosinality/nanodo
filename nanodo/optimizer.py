@@ -179,6 +179,9 @@ def _get_base_optimizer(
         )
 
     elif optimizer_type == "adamw":
+        b1 = c.get("b1", 0.9)
+        b2 = c.get("b2", 0.98)
+        
         base_optimizer = optax.adamw(
             learning_rate_fn,
             b1=c.get("b1", 0.9),
@@ -189,6 +192,8 @@ def _get_base_optimizer(
                 _params_mask, exclude_names=weight_decay_exclusion_names
             ),
         )
+        
+        print(f"AdamW b1 = {b1} b2 = {b2}")
 
     elif optimizer_type == "lion":
         base_optimizer = optax.lion(

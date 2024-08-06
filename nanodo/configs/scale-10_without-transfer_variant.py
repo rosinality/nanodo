@@ -45,9 +45,11 @@ def get_config() -> ml_collections.ConfigDict:
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
+    base_params = model_params(21, 832, 32101)
     cfg.base_train_steps = 15000
     cfg.flops_multiplier = 1
-    cfg.num_train_tokens = 1024 * 512 * 30000
+    base_train_tokens = 1024 * 512 * 30000
+    cfg.num_train_tokens = math.ceil(base_train_tokens * (params / base_params))
     cfg.final_lr_multiplier = 0.1
 
     # Transformer
@@ -87,7 +89,7 @@ def get_config() -> ml_collections.ConfigDict:
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=5000,
+        warmup_steps=math.ceil(5000 * (params / base_params)),
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.

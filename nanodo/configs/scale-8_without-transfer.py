@@ -37,11 +37,11 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 640
-    n_layer = 15
+    dim = 480
+    n_layer = 12
     seq_len = 1024
     
-    cfg.scale = 10
+    cfg.scale = 8
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
