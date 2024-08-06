@@ -56,16 +56,16 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
-    if cfg.get('num_train_tokens', None) is not None:
-        c.opt.num_train_steps = math.ceil(cfg.num_train_tokens / (cfg.model.L * cfg.batch_size))
+    if c.get('num_train_tokens', None) is not None:
+        c.opt.num_train_steps = math.ceil(c.num_train_tokens / (c.model.L * c.batch_size))
 
     else:
         c.opt.num_train_steps = math.ceil(c.base_train_steps * c.flops_multiplier)
         
-    if cfg.get('final_lr_multiplier', None) is not None:
-        cfg.opt.final_learning_rate = cfg.opt.peak_learning_rate * cfg.final_lr_multiplier
+    if c.get('final_lr_multiplier', None) is not None:
+        c.opt.final_learning_rate = c.opt.peak_learning_rate * c.final_lr_multiplier
 
-    run_name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}_batch-{c.batch_size}_b2-{cfg.opt.b2}"
+    run_name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}_batch-{c.batch_size}_b2-{c.opt.b2}"
     memo = c.get("memo", "")
 
     if memo != "":
