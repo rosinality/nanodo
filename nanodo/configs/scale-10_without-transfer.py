@@ -31,7 +31,7 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.seed = 42
 
     # Data
-    cfg.batch_size = 160 * 2  # Global batch size. Must be divisible by the #devices.
+    cfg.batch_size = 512  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
@@ -41,12 +41,14 @@ def get_config() -> ml_collections.ConfigDict:
     n_layer = 15
     seq_len = 1024
     
-    cfg.scale = 10
+    cfg.scale = 12
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
-    cfg.base_train_steps = base_flops / flops / seq_len / cfg.batch_size
+    cfg.base_train_steps = 15000
     cfg.flops_multiplier = 1
+    cfg.num_train_tokens = 1024 * 512 * 30000
+    cfg.final_lr_multiplier = 0.1
 
     # Transformer
     cfg.model = ml_collections.config_dict.create(
@@ -57,7 +59,7 @@ def get_config() -> ml_collections.ConfigDict:
         F=int(dim * 3.5),  # FF inner dimension
         dtype="bfloat16",  # computation dtype.
         fsdp_enabled=True,  # True to shard the model.
-        remat=False,  # Transformer block gradient checkpointing to save memory.
+        remat=True,  # Transformer block gradient checkpointing to save memory.
         kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
         kernel_init_str="fan_in-1.0",
         # kernel_init=nn.initializers.xavier_uniform(),
@@ -81,25 +83,26 @@ def get_config() -> ml_collections.ConfigDict:
 
     # Optimizer
     cfg.opt = ml_collections.config_dict.create(
-        num_train_steps=math.ceil(cfg.base_train_steps),  # Note: lm1b has 30,301,028 training examples
+        num_train_steps=15000,  # Note: lm1b has 30,301,028 training examples
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=math.ceil(params / seq_len / cfg.batch_size),
+        warmup_steps=5000,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
         optimizer="adamw",
         independent_weight_decay=True,
         weight_decay_exclusion_names=("bias", "scale"),
-        b2=0.99,
+        b2=0.98,
         layerwise_lr_multiplier=None,
     )
 
     # Checkpointing
     cfg.workdir = "/home/rosinality/results"
+    cfg.checkpoint_path = "gs://rosinality-tpu-bucket/"
     cfg.checkpoint = True
-    cfg.checkpoint_every_steps = 2000
+    cfg.checkpoint_every_steps = 5000
     # Path to the checkpoint to be restored. Note than new checkpoints will be
     # saved to the new workdir.
     cfg.checkpoint_restore_dir = None
@@ -126,6 +129,7 @@ def get_config() -> ml_collections.ConfigDict:
     # Buffer size (in unit of batches) for the data loader. Default to 2 so we
     # always prefetch another batch
     cfg.pygrain_worker_buffer_size = 2
+    cfg.grad_accumulation_steps = 1
     cfg.memo = ""
 
     return cfg
