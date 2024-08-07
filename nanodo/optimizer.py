@@ -193,7 +193,7 @@ def _get_base_optimizer(
             ),
         )
         
-        print("AdamW b1 = {b1} b2 = {b2}")
+        print(f"AdamW b1 = {b1} b2 = {b2}")
 
     elif optimizer_type == "lion":
         base_optimizer = optax.lion(
