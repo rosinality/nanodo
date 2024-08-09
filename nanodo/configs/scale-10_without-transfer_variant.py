@@ -89,7 +89,7 @@ def get_config() -> ml_collections.ConfigDict:
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=5000,
+        warmup_steps=math.ceil(5000 * (params / base_params)),
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
