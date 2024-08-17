@@ -31,22 +31,23 @@ def get_config() -> ml_collections.ConfigDict:
     cfg.seed = 42
 
     # Data
-    cfg.batch_size = 512  # Global batch size. Must be divisible by the #devices.
+    cfg.batch_size = 768  # Global batch size. Must be divisible by the #devices.
     cfg.train_epochs = None  # None=>infinite
     cfg.ds_name = "scripts/fileinstructions.json"
     cfg.vocab_path = "tests/testdata/sentencepiece_cc_all.32000.100extra-sentencepiece.model"  # set to local-path
     cfg.eval_batch_size = 256
 
-    dim = 1344
-    n_layer = 26
-    seq_len = 1024
+    dim = 1024
+    n_layer = 24
+    seq_len = 2048
     
-    cfg.scale = 15
+    cfg.scale = 14
     base_flops = 124611846576537600
     flops = flops_per_token(n_layer, dim, seq_len)
     params = model_params(n_layer, dim, 32101)
     cfg.base_train_steps = 15000
     cfg.flops_multiplier = 1
+    cfg.final_lr_multiplier = 0.1
 
     # Transformer
     cfg.model = ml_collections.config_dict.create(
@@ -57,7 +58,7 @@ def get_config() -> ml_collections.ConfigDict:
         F=int(dim * 3.5),  # FF inner dimension
         dtype="bfloat16",  # computation dtype.
         fsdp_enabled=True,  # True to shard the model.
-        remat=False,  # Transformer block gradient checkpointing to save memory.
+        remat=True,  # Transformer block gradient checkpointing to save memory.
         kernel_init=nn.initializers.variance_scaling(1.0, "fan_in", "normal"),
         kernel_init_str="fan_in-1.0",
         # kernel_init=nn.initializers.xavier_uniform(),
@@ -85,7 +86,7 @@ def get_config() -> ml_collections.ConfigDict:
         peak_learning_rate=3e-3,
         init_learning_rate=0,
         final_learning_rate=3e-4,
-        warmup_steps=660,
+        warmup_steps=5000,
         decay_type="cosine",
         weight_decay=1e-4,
         clip_by_global_norm=1.0,  # 1.0 is common for many well-known LLMs.
@@ -99,6 +100,8 @@ def get_config() -> ml_collections.ConfigDict:
     # Checkpointing
     cfg.workdir = "/home/rosinality/results"
     cfg.checkpoint_path = "gs://rosinality-tpu-bucket/"
+    cfg.init_from = ""
+    cfg.n_stack_transfer = (6, 24)
     cfg.checkpoint = True
     cfg.checkpoint_every_steps = 5000
     # Path to the checkpoint to be restored. Note than new checkpoints will be

@@ -56,13 +56,15 @@ PyTree = Any
 def train_and_evaluate(c: "ml_collections.ConfigDict"):
     """Train loop."""
 
-    if c.get('num_train_tokens', None) is not None:
-        c.opt.num_train_steps = math.ceil(c.num_train_tokens / (c.model.L * c.batch_size))
+    if c.get("num_train_tokens", None) is not None:
+        c.opt.num_train_steps = math.ceil(
+            c.num_train_tokens / (c.model.L * c.batch_size)
+        )
 
     else:
         c.opt.num_train_steps = math.ceil(c.base_train_steps * c.flops_multiplier)
-        
-    if c.get('final_lr_multiplier', None) is not None:
+
+    if c.get("final_lr_multiplier", None) is not None:
         c.opt.final_learning_rate = c.opt.peak_learning_rate * c.final_lr_multiplier
 
     run_name = f"scale-{c.scale}x{c.flops_multiplier}@{c.opt.peak_learning_rate}_batch-{c.batch_size}_b2-{c.opt.b2}"
@@ -139,7 +141,7 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
     tokenizer = data.get_py_tokenizer(c.vocab_path)
     vocab_size = tokenizer.GetPieceSize()
 
-    model, get_loss_fn = model_factory.get_model_and_loss(c, vocab_size)
+    model, get_loss_fn = model_factory.get_model_and_loss(c, math.ceil(vocab_size / 128) * 128)
 
     tic = time.time()
     shardings, state = _init_train_state(c, model, rng=rng, mesh=mesh)
@@ -159,6 +161,26 @@ def train_and_evaluate(c: "ml_collections.ConfigDict"):
         worker_buffer_size=c.pygrain_worker_buffer_size,
     )
     train_iter = iter(train_ds)
+
+    init_from = c.get("init_from", "")
+    if len(init_from) > 0:
+        ckpt_mngr = _get_ckpt_manager(init_from, c)
+
+        if ckpt_mngr.latest_step() is not None:
+            opt_state = state.opt_state
+            latest_step = ckpt_mngr.latest_step()
+            latest_step = 5000
+            logging.info("Restoring checkpoint %d from %s", latest_step, init_from)
+            state, train_iter = _restore_ckpt(
+                ckpt_mngr,
+                state,
+                train_iter,
+                latest_step,
+                n_stack_transfer=c.n_stack_transfer,
+            )
+
+            if jax.process_index() == 0:
+                print("step", state.step)
 
     if c.checkpoint:
         checkpoint_path = c.get("checkpoint_path", None)
@@ -440,15 +462,44 @@ def _get_ckpt_manager(
 def _restore_ckpt(
     ckpt_mngr: ocp.CheckpointManager,
     state: TrainState,
-    train_iter: Iterator[jax.Array],
+    train_iter: Iterator[jax.Array] | None = None,
     step: int | None = None,
+    n_stack_transfer: tuple[int, int] | None = None,
 ) -> tuple[TrainState, Iterator[jax.Array]]:
     """Restore a checkpoint."""
     restore_args = ocp.checkpoint_utils.construct_restore_args(state)
     restore_kwargs = {"state": {"restore_args": restore_args}}
+    items = {"state": state}
+
+    if train_iter is not None:
+        items["data"] = train_iter
+
+    if n_stack_transfer is not None:
+        transforms = {
+            r"(.*)opt_state(.*)": ocp.Transform(use_fallback=True),
+            r"(.*)step(.*)": ocp.Transform(use_fallback=True),
+        }
+        from_depth, to_depth = n_stack_transfer
+
+        for block_i in range(to_depth):
+            transforms[r"params/(.*)blocks_{}/(.*)".format(block_i)] = ocp.Transform(
+                original_key=r"params/\1blocks_{}/\2".format(block_i % from_depth),
+                value_fn=lambda x: jnp.copy(x),
+            )
+
+        if jax.process_index() == 0:
+            print(transforms)
+
+        restore_kwargs["state"]["transforms"] = transforms
+
     restored = ckpt_mngr.restore(
         ckpt_mngr.latest_step() if step is None else step,
-        items={"state": state, "data": train_iter},
+        items=items,
         restore_kwargs=restore_kwargs,
     )
-    return restored["state"], restored["data"]
+
+    if train_iter is None:
+        return restored["state"]
+
+    else:
+        return restored["state"], restored["data"]
