@@ -90,6 +90,13 @@ def get_metrics(
   )
 
   lr = optimizer.get_learning_rate_schedule(c.opt)(step)
+  
+  if c.opt.get("weight_decay_lr_exponent", False):
+    constant_start = c.opt.get("weight_decay_constant_start", False)
+    wd = optimizer.get_learning_rate_schedule(c.opt, multiplier=c.opt.weight_decay, constant_start=constant_start)(step)
+  else:
+    wd = c.opt.weight_decay
+  
   # Normalized update scale (w/o global learning rate factor).
   updates = jax.tree.map(lambda x: x / (lr + 1e-20), updates)
   metrics = {
@@ -99,6 +106,7 @@ def get_metrics(
       "train_ntokens": aux_data.ntokens,
       "z_loss": aux_data.z_loss,
       "learning_rate": jnp.array(lr),
+      "weight_decay": jnp.array(wd),
       "train_fraction": step / c.opt.num_train_steps,
       "train_tokens_seen": aux_data.ntokens * step,
 

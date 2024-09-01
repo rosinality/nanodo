@@ -16,10 +16,15 @@
 # pylint: disable=g-import-not-at-top
 
 import functools
-from typing import Iterable, TYPE_CHECKING
+from typing import Iterable, TYPE_CHECKING, NamedTuple
 
+import chex
 import jax
+import jax.numpy as jnp
 import optax
+from optax._src import transform
+from jax import tree_util as jtu
+from optax._src import base, numerics, wrappers, combine
 
 if TYPE_CHECKING:
     import ml_collections
@@ -46,14 +51,19 @@ def get_optimizer(c: "ml_collections.ConfigDict") -> optax.MultiSteps:
 
 
 def get_learning_rate_schedule(
-    c: "ml_collections.ConfigDict",
+    c: "ml_collections.ConfigDict", multiplier=1, constant_start=False
 ) -> optax.Schedule:
     """Creates a learning rate schedule based on the config."""
 
+    init_value = c.init_learning_rate * multiplier
+    
+    if constant_start:
+        init_value = c.peak_learning_rate * multiplier
+
     schedules = [
         optax.linear_schedule(
-            init_value=c.init_learning_rate,
-            end_value=c.peak_learning_rate,
+            init_value=init_value,
+            end_value=c.peak_learning_rate * multiplier,
             transition_steps=c.warmup_steps,
         )
     ]
@@ -72,7 +82,7 @@ def get_learning_rate_schedule(
         decay_steps = c.get("decay_steps", c.num_train_steps - c.warmup_steps)
         schedules.append(
             optax.cosine_decay_schedule(
-                init_value=c.peak_learning_rate,
+                init_value=c.peak_learning_rate * multiplier,
                 decay_steps=decay_steps,
                 alpha=c.final_learning_rate / c.peak_learning_rate,
                 exponent=1.0,
@@ -152,6 +162,82 @@ def _params_mask(
     )
 
 
+def add_decayed_weights(weight_decay=0.0, mask=None) -> base.GradientTransformation:
+    """Add parameter scaled by `weight_decay`.
+
+    Args:
+    weight_decay: A scalar weight decay rate.
+    mask: A tree with same structure as (or a prefix of) the params PyTree,
+        or a Callable that returns such a pytree given the params/updates.
+        The leaves should be booleans, `True` for leaves/subtrees you want to
+        apply the transformation to, and `False` for those you want to skip.
+
+    Returns:
+    A `GradientTransformation` object.
+    """
+
+    if callable(weight_decay):
+        return weight_decay_by_schedule(weight_decay, mask)
+
+    return transform.add_decayed_weights(weight_decay, mask)
+
+
+class WeightDecayByScheduleState(NamedTuple):
+    """Maintains count for scale scheduling."""
+
+    count: chex.Array  # shape=(), dtype=jnp.int32
+
+
+def weight_decay_by_schedule(weight_decay_fn, mask):
+    def init_fn(params):
+        del params
+        return WeightDecayByScheduleState(count=jnp.zeros([], jnp.int32))
+
+    def update_fn(updates, state, params):
+        if params is None:
+            raise ValueError(base.NO_PARAMS_MSG)
+        weight_decay = weight_decay_fn(state.count)
+        updates = jtu.tree_map(
+            lambda g, p: g + jnp.array(weight_decay, dtype=p.dtype) * p, updates, params
+        )
+        return updates, WeightDecayByScheduleState(
+            count=numerics.safe_int32_increment(state.count)
+        )
+
+    # If mask is not `None`, apply mask to the gradient transformation.
+    # E.g. it is common to skip weight decay on bias units and batch stats.
+    if mask is not None:
+        return wrappers.masked(base.GradientTransformation(init_fn, update_fn), mask)
+
+    return base.GradientTransformation(init_fn, update_fn)
+
+
+def adamw(
+    learning_rate: base.ScalarOrSchedule,
+    b1: float = 0.9,
+    b2: float = 0.999,
+    eps: float = 1e-8,
+    eps_root: float = 0.0,
+    mu_dtype=None,
+    weight_decay: float = 1e-4,
+    mask=None,
+    *,
+    nesterov: bool = False,
+) -> base.GradientTransformation:
+    return combine.chain(
+        transform.scale_by_adam(
+            b1=b1,
+            b2=b2,
+            eps=eps,
+            eps_root=eps_root,
+            mu_dtype=mu_dtype,
+            nesterov=nesterov,
+        ),
+        add_decayed_weights(weight_decay, mask),
+        transform.scale_by_learning_rate(learning_rate),
+    )
+
+
 def _get_base_optimizer(
     c: "ml_collections.ConfigDict",
 ) -> optax.GradientTransformation:
@@ -163,6 +249,11 @@ def _get_base_optimizer(
         weight_decay = c.weight_decay / c.peak_learning_rate
     else:
         weight_decay = c.weight_decay
+
+    if c.get("weight_decay_lr_exponent", False):
+        constant_start = c.get("weight_decay_constant_start", False)
+        weight_decay = get_learning_rate_schedule(c, multiplier=weight_decay, constant_start=constant_start)
+        print("using weight_decay_lr_exponent")
 
     if optimizer_type == "adafactor":
         base_optimizer = optax.adafactor(
@@ -181,8 +272,8 @@ def _get_base_optimizer(
     elif optimizer_type == "adamw":
         b1 = c.get("b1", 0.9)
         b2 = c.get("b2", 0.98)
-        
-        base_optimizer = optax.adamw(
+
+        base_optimizer = adamw(
             learning_rate_fn,
             b1=c.get("b1", 0.9),
             b2=c.get("b2", 0.98),
@@ -192,7 +283,7 @@ def _get_base_optimizer(
                 _params_mask, exclude_names=weight_decay_exclusion_names
             ),
         )
-        
+
         print(f"AdamW b1 = {b1} b2 = {b2}")
 
     elif optimizer_type == "lion":
